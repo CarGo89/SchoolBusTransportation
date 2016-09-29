@@ -1,9 +1,11 @@
 ﻿using System.Collections.Generic;
+using System.ComponentModel.DataAnnotations.Schema;
 using SchoolBus.DataAccess.Entities.Relationships;
 
 namespace SchoolBus.DataAccess.Entities
 {
-    public class Tutor : Person
+    [Table("Tutors")]
+    public class Tutor : User
     {
         #region Navigation Properties
 

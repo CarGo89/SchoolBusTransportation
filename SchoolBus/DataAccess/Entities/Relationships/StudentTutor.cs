@@ -1,42 +1,50 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.ComponentModel.DataAnnotations;
+using System.ComponentModel.DataAnnotations.Schema;
 
 namespace SchoolBus.DataAccess.Entities.Relationships
 {
+    [Table("StudentTutors")]
     public class StudentTutor : IEntityRelationship<SchoolYearStudent, Tutor>
     {
         #region IEntity Properties
 
+        [Key]
         public int Id { get; set; }
 
         public DateTime CreatedAt { get; set; }
 
-        public int CreatedById { get; set; }
+        public int? CreatedById { get; set; }
 
-        public virtual Person CreatedBy { get; set; }
+        public virtual User CreatedBy { get; set; }
 
         public DateTime UpdatedAt { get; set; }
 
-        public int UpdatedById { get; set; }
+        public int? UpdatedById { get; set; }
 
-        public virtual Person UpdatedBy { get; set; }
+        public virtual User UpdatedBy { get; set; }
 
-        public DateTime DeactivatedAt { get; set; }
+        public DateTime? DeactivatedAt { get; set; }
 
-        public int DeactivatedById { get; set; }
+        public int? DeactivatedById { get; set; }
 
-        public virtual Person DeactivatedBy { get; set; }
+        public virtual User DeactivatedBy { get; set; }
 
         #endregion IEntity Properties
 
         #region IEntityRelationship Properties
 
+        [Column("SchoolYearStudentId")]
         public int LeftEntityId { get; set; }
 
+        [ForeignKey("LeftEntityId")]
         public virtual SchoolYearStudent LeftEntity { get; set; }
 
+        [Column("TutorId")]
         public int RightEntityId { get; set; }
 
+        [ForeignKey("RightEntityId")]
         public virtual Tutor RightEntity { get; set; }
 
         #endregion IEntityRelationship Properties

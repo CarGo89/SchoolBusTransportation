@@ -59,7 +59,7 @@
     <Compile Include="DataAccess\Entities\Driver.cs" />
     <Compile Include="DataAccess\Entities\Address.cs" />
     <Compile Include="DataAccess\Entities\IEntity.cs" />
-    <Compile Include="DataAccess\Entities\Person.cs" />
+    <Compile Include="DataAccess\Entities\User.cs" />
     <Compile Include="DataAccess\Entities\Relationships\DriverBus.cs" />
     <Compile Include="DataAccess\Entities\Relationships\IEntityRelationship.cs" />
     <Compile Include="DataAccess\Entities\Relationships\SchoolYearDriver.cs" />
@@ -67,12 +67,21 @@
     <Compile Include="DataAccess\Entities\SchoolYear.cs" />
     <Compile Include="DataAccess\Entities\Student.cs" />
     <Compile Include="DataAccess\Entities\Tutor.cs" />
+    <Compile Include="Migrations\201609292226544_Initial.cs" />
+    <Compile Include="Migrations\201609292226544_Initial.Designer.cs">
+      <DependentUpon>201609292226544_Initial.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />
     <None Include="packages.config" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Migrations\201609292226544_Initial.resx">
+      <DependentUpon>201609292226544_Initial.cs</DependentUpon>
+    </EmbeddedResource>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

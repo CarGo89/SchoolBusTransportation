@@ -10,21 +10,21 @@ namespace SchoolBus.DataAccess.Entities
 
         DateTime CreatedAt { get; set; }
 
-        int CreatedById { get; set; }
+        int? CreatedById { get; set; }
 
-        Person CreatedBy { get; set; }
+        User CreatedBy { get; set; }
 
         DateTime UpdatedAt { get; set; }
 
-        int UpdatedById { get; set; }
+        int? UpdatedById { get; set; }
 
-        Person UpdatedBy { get; set; }
+        User UpdatedBy { get; set; }
 
-        DateTime DeactivatedAt { get; set; }
+        DateTime? DeactivatedAt { get; set; }
 
-        int DeactivatedById { get; set; }
+        int? DeactivatedById { get; set; }
 
-        Person DeactivatedBy { get; set; }
+        User DeactivatedBy { get; set; }
 
         #endregion Properties
     }
