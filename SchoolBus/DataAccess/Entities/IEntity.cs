@@ -4,6 +4,8 @@ namespace SchoolBus.DataAccess.Entities
 {
     public interface IEntity
     {
+        #region Properties
+
         int Id { get; set; }
 
         DateTime CreatedAt { get; set; }
@@ -23,5 +25,7 @@ namespace SchoolBus.DataAccess.Entities
         int DeactivatedById { get; set; }
 
         Person DeactivatedBy { get; set; }
+
+        #endregion Properties
     }
 }

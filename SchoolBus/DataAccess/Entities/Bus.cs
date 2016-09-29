@@ -6,6 +6,8 @@ namespace SchoolBus.DataAccess.Entities
 {
     public class Bus : IEntity
     {
+        #region IEntity Properties
+
         public int Id { get; set; }
 
         public DateTime CreatedAt { get; set; }
@@ -26,6 +28,10 @@ namespace SchoolBus.DataAccess.Entities
 
         public virtual Person DeactivatedBy { get; set; }
 
+        #endregion IEntity Properties
+
+        #region Properties
+
         public string Manufacturer { get; set; }
 
         public int Year { get; set; }
@@ -36,6 +42,12 @@ namespace SchoolBus.DataAccess.Entities
 
         public int Capacity { get; set; }
 
+        #endregion Properties
+
+        #region Navigation Properties
+
         public virtual ICollection<DriverBus> DriverBusses { get; set; }
+
+        #endregion Navigation Properties
     }
 }

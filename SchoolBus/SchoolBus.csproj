@@ -53,7 +53,7 @@
     <Compile Include="DataAccess\Entities\Relationships\DriverAddress.cs" />
     <Compile Include="DataAccess\Entities\Relationships\DriverStudent.cs" />
     <Compile Include="DataAccess\Entities\Relationships\StudentTutor.cs" />
-    <Compile Include="DataAccess\Entities\Relationships\TutorAddress.cs" />
+    <Compile Include="DataAccess\Entities\Relationships\StudentTutorAddress.cs" />
     <Compile Include="DataAccess\SchoolBusDataModel.cs" />
     <Compile Include="DataAccess\Entities\Bus.cs" />
     <Compile Include="DataAccess\Entities\Driver.cs" />

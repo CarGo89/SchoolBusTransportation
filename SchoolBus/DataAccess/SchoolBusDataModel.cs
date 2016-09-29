@@ -29,9 +29,19 @@ namespace SchoolBus.DataAccess
 
         public virtual DbSet<Address> Addresses { get; set; }
 
+        public virtual DbSet<DriverAddress> DriverAddresses { get; set; }
+
+        public virtual DbSet<DriverStudent> DriverStudents { get; set; }
+
+        public virtual DbSet<DriverBus> DriverBusses { get; set; }
+
         public virtual DbSet<SchoolYearStudent> SchoolYearStudents { get; set; }
 
         public virtual DbSet<SchoolYearDriver> SchoolYearDrivers { get; set; }
+
+        public virtual DbSet<StudentTutor> StudentTutors { get; set; }
+
+        public virtual DbSet<StudentTutorAddress> StudentTutorAddresses { get; set; }
 
         #endregion Properties
     }

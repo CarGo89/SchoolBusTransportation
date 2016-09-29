@@ -4,6 +4,8 @@
         where TLeftEntity : class, IEntity
         where TRightEntity : class, IEntity
     {
+        #region Properties
+
         int LeftEntityId { get; set; }
 
         TLeftEntity LeftEntity { get; set; }
@@ -11,5 +13,7 @@
         int RightEntityId { get; set; }
 
         TRightEntity RightEntity { get; set; }
+
+        #endregion Properties
     }
 }

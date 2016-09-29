@@ -4,6 +4,8 @@ namespace SchoolBus.DataAccess.Entities.Relationships
 {
     public class StudentTutorAddress : IEntityRelationship<StudentTutor, Address>
     {
+        #region IEntity Properties
+
         public int Id { get; set; }
 
         public DateTime CreatedAt { get; set; }
@@ -24,6 +26,10 @@ namespace SchoolBus.DataAccess.Entities.Relationships
 
         public virtual Person DeactivatedBy { get; set; }
 
+        #endregion IEntity Properties
+
+        #region IEntityRelationship Properties
+
         public int LeftEntityId { get; set; }
 
         public virtual StudentTutor LeftEntity { get; set; }
@@ -31,5 +37,7 @@ namespace SchoolBus.DataAccess.Entities.Relationships
         public int RightEntityId { get; set; }
 
         public virtual Address RightEntity { get; set; }
+
+        #endregion IEntityRelationship Properties
     }
 }

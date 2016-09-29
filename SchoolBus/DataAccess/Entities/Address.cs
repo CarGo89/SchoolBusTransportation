@@ -6,6 +6,8 @@ namespace SchoolBus.DataAccess.Entities
 {
     public class Address : IEntity
     {
+        #region IEntity Properties
+
         public int Id { get; set; }
 
         public DateTime CreatedAt { get; set; }
@@ -26,6 +28,10 @@ namespace SchoolBus.DataAccess.Entities
 
         public virtual Person DeactivatedBy { get; set; }
 
+        #endregion IEntity Properties
+
+        #region Properties
+
         public string Street { get; set; }
 
         public int ZipCode { get; set; }
@@ -34,8 +40,14 @@ namespace SchoolBus.DataAccess.Entities
 
         public string State { get; set; }
 
+        #endregion Properties
+
+        #region Navigation Properties
+
         public virtual ICollection<DriverAddress> DriverAddresses { get; set; }
 
         public virtual ICollection<StudentTutorAddress> StudentTutorAddresses { get; set; }
+
+        #endregion Navigation Properties
     }
 }
