@@ -1,6 +1,6 @@
 ﻿using System;
 
-namespace SchoolBus.Entities
+namespace SchoolBus.DataAccess.Entities
 {
     public interface IEntity
     {

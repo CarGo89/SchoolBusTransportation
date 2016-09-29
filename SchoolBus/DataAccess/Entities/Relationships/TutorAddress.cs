@@ -1,8 +1,8 @@
 ﻿using System;
 
-namespace SchoolBus.Entities
+namespace SchoolBus.DataAccess.Entities.Relationships
 {
-    public class Address : IEntity
+    public class StudentTutorAddress : IEntityRelationship<StudentTutor, Address>
     {
         public int Id { get; set; }
 
@@ -24,12 +24,12 @@ namespace SchoolBus.Entities
 
         public virtual Person DeactivatedBy { get; set; }
 
-        public string Street { get; set; }
+        public int LeftEntityId { get; set; }
 
-        public int ZipCode { get; set; }
+        public virtual StudentTutor LeftEntity { get; set; }
 
-        public string City { get; set; }
+        public int RightEntityId { get; set; }
 
-        public string State { get; set; }
+        public virtual Address RightEntity { get; set; }
     }
 }

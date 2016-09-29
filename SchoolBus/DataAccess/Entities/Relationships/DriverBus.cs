@@ -1,8 +1,8 @@
 ﻿using System;
 
-namespace SchoolBus.Entities
+namespace SchoolBus.DataAccess.Entities.Relationships
 {
-    public class Bus : IEntity
+    public class DriverBus : IEntityRelationship<SchoolYearDriver, Bus>
     {
         public int Id { get; set; }
 
@@ -24,14 +24,12 @@ namespace SchoolBus.Entities
 
         public virtual Person DeactivatedBy { get; set; }
 
-        public string Manufacturer { get; set; }
+        public int LeftEntityId { get; set; }
 
-        public int Year { get; set; }
+        public virtual SchoolYearDriver LeftEntity { get; set; }
 
-        public string Registration { get; set; }
+        public int RightEntityId { get; set; }
 
-        public string Color { get; set; }
-
-        public int Capacity { get; set; }
+        public virtual Bus RightEntity { get; set; }
     }
 }

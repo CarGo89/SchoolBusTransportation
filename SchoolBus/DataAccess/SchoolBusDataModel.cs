@@ -1,6 +1,6 @@
 using System.Data.Entity;
-using SchoolBus.Entities;
-using SchoolBus.Entities.Relationships;
+using SchoolBus.DataAccess.Entities;
+using SchoolBus.DataAccess.Entities.Relationships;
 
 namespace SchoolBus.DataAccess
 {

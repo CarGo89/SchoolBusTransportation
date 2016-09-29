@@ -1,6 +1,7 @@
 ﻿using System;
+using System.Collections.Generic;
 
-namespace SchoolBus.Entities.Relationships
+namespace SchoolBus.DataAccess.Entities.Relationships
 {
     public class SchoolYearStudent : IEntityRelationship<SchoolYear, Student>
     {
@@ -31,5 +32,9 @@ namespace SchoolBus.Entities.Relationships
         public int RightEntityId { get; set; }
 
         public virtual Student RightEntity { get; set; }
+
+        public virtual ICollection<DriverStudent> DriverStudents { get; set; }
+
+        public virtual ICollection<StudentTutor> StudentTutors { get; set; }
     }
 }

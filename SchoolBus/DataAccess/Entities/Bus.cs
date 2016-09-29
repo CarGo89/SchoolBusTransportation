@@ -1,10 +1,10 @@
 ﻿using System;
 using System.Collections.Generic;
-using SchoolBus.Entities.Relationships;
+using SchoolBus.DataAccess.Entities.Relationships;
 
-namespace SchoolBus.Entities
+namespace SchoolBus.DataAccess.Entities
 {
-    public class SchoolYear : IEntity
+    public class Bus : IEntity
     {
         public int Id { get; set; }
 
@@ -26,12 +26,16 @@ namespace SchoolBus.Entities
 
         public virtual Person DeactivatedBy { get; set; }
 
-        public DateTime Start { get; set; }
+        public string Manufacturer { get; set; }
 
-        public DateTime End { get; set; }
+        public int Year { get; set; }
 
-        public virtual ICollection<SchoolYearStudent> SchoolYearStudents { get; set; }
+        public string Registration { get; set; }
 
-        public virtual ICollection<SchoolYearDriver> SchoolYearDrivers { get; set; }
+        public string Color { get; set; }
+
+        public int Capacity { get; set; }
+
+        public virtual ICollection<DriverBus> DriverBusses { get; set; }
     }
 }

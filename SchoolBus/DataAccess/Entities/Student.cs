@@ -1,8 +1,7 @@
 ﻿using System.Collections.Generic;
-using System.ComponentModel.DataAnnotations.Schema;
-using SchoolBus.Entities.Relationships;
+using SchoolBus.DataAccess.Entities.Relationships;
 
-namespace SchoolBus.Entities
+namespace SchoolBus.DataAccess.Entities
 {
     public class Student : Person
     {

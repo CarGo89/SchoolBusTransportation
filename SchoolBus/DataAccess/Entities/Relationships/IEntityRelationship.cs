@@ -1,4 +1,4 @@
-﻿namespace SchoolBus.Entities.Relationships
+﻿namespace SchoolBus.DataAccess.Entities.Relationships
 {
     public interface IEntityRelationship<TLeftEntity, TRightEntity> : IEntity
         where TLeftEntity : class, IEntity
