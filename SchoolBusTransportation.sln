@@ -7,6 +7,15 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SchoolBus", "SchoolBus\Scho
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SchoolBusWeb", "SchoolBusWeb\SchoolBusWeb.csproj", "{26AC335C-788B-4F80-8CDB-CAE8DC259A3B}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SchoolBus.Tests", "SchoolBus.Tests\SchoolBus.Tests.csproj", "{C09DBB7C-E2F6-4A50-BE64-55EF404B2096}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = ".nuget", ".nuget", "{20A550DA-39AD-498B-97D2-6707CFFA4431}"
+	ProjectSection(SolutionItems) = preProject
+		.nuget\NuGet.Config = .nuget\NuGet.Config
+		.nuget\NuGet.exe = .nuget\NuGet.exe
+		.nuget\NuGet.targets = .nuget\NuGet.targets
+	EndProjectSection
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -21,6 +30,10 @@ Global
 		{26AC335C-788B-4F80-8CDB-CAE8DC259A3B}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{26AC335C-788B-4F80-8CDB-CAE8DC259A3B}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{26AC335C-788B-4F80-8CDB-CAE8DC259A3B}.Release|Any CPU.Build.0 = Release|Any CPU
+		{C09DBB7C-E2F6-4A50-BE64-55EF404B2096}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{C09DBB7C-E2F6-4A50-BE64-55EF404B2096}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{C09DBB7C-E2F6-4A50-BE64-55EF404B2096}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{C09DBB7C-E2F6-4A50-BE64-55EF404B2096}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

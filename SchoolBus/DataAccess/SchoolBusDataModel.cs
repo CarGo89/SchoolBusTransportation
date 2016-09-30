@@ -13,6 +13,11 @@ namespace SchoolBus.DataAccess
         {
         }
 
+        public SchoolBusDataModel(string connectionString)
+            : base(connectionString)
+        {
+        }
+
         #endregion Constructors
 
         #region Properties
