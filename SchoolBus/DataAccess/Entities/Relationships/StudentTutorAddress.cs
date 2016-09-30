@@ -34,13 +34,13 @@ namespace SchoolBus.DataAccess.Entities.Relationships
 
         #region IEntityRelationship Properties
 
-        [Column("StudentTutorId")]
+        [Column("StudentTutorId"), Index("UQ_StudentTutorId_AddressId", 1, IsUnique = true)]
         public int LeftEntityId { get; set; }
 
         [ForeignKey("LeftEntityId")]
         public virtual StudentTutor LeftEntity { get; set; }
 
-        [Column("AddressId")]
+        [Column("AddressId"), Index("UQ_StudentTutorId_AddressId", 2, IsUnique = true)]
         public int RightEntityId { get; set; }
 
         [ForeignKey("RightEntityId")]
