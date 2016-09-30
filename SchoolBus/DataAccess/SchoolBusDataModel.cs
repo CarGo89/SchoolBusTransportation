@@ -31,6 +31,8 @@ namespace SchoolBus.DataAccess
 
         public virtual DbSet<Address> Addresses { get; set; }
 
+        public virtual DbSet<RelationshipTerm> RelationshipTerms { get; set; }
+
         public virtual DbSet<DriverAddress> DriverAddresses { get; set; }
 
         public virtual DbSet<DriverStudent> DriverStudents { get; set; }

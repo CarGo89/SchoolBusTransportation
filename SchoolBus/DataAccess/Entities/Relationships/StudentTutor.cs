@@ -51,6 +51,10 @@ namespace SchoolBus.DataAccess.Entities.Relationships
 
         #region Navigation Properties
 
+        public int RelationshipTermId { get; set; }
+
+        public virtual RelationshipTerm RelationshipTerm { get; set; }
+
         public virtual ICollection<StudentTutorAddress> StudentTutorAddresses { get; set; }
 
         #endregion Navigation Properties

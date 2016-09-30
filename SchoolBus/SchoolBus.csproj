@@ -54,6 +54,7 @@
     <Compile Include="DataAccess\Entities\Relationships\DriverStudent.cs" />
     <Compile Include="DataAccess\Entities\Relationships\StudentTutor.cs" />
     <Compile Include="DataAccess\Entities\Relationships\StudentTutorAddress.cs" />
+    <Compile Include="DataAccess\Entities\RelationshipTerm.cs" />
     <Compile Include="DataAccess\SchoolBusDataModel.cs" />
     <Compile Include="DataAccess\Entities\Bus.cs" />
     <Compile Include="DataAccess\Entities\Driver.cs" />
@@ -67,13 +68,9 @@
     <Compile Include="DataAccess\Entities\SchoolYear.cs" />
     <Compile Include="DataAccess\Entities\Student.cs" />
     <Compile Include="DataAccess\Entities\Tutor.cs" />
-    <Compile Include="Migrations\201609292226544_Initial.cs" />
-    <Compile Include="Migrations\201609292226544_Initial.Designer.cs">
-      <DependentUpon>201609292226544_Initial.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\201609301715423_Uniques.cs" />
-    <Compile Include="Migrations\201609301715423_Uniques.Designer.cs">
-      <DependentUpon>201609301715423_Uniques.cs</DependentUpon>
+    <Compile Include="Migrations\201609302001128_RelationshipTermUnique.cs" />
+    <Compile Include="Migrations\201609302001128_RelationshipTermUnique.Designer.cs">
+      <DependentUpon>201609302001128_RelationshipTermUnique.cs</DependentUpon>
     </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
@@ -83,11 +80,8 @@
     <None Include="packages.config" />
   </ItemGroup>
   <ItemGroup>
-    <EmbeddedResource Include="Migrations\201609292226544_Initial.resx">
-      <DependentUpon>201609292226544_Initial.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\201609301715423_Uniques.resx">
-      <DependentUpon>201609301715423_Uniques.cs</DependentUpon>
+    <EmbeddedResource Include="Migrations\201609302001128_RelationshipTermUnique.resx">
+      <DependentUpon>201609302001128_RelationshipTermUnique.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
