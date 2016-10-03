@@ -12,7 +12,7 @@ namespace SchoolBus.DataAccess.Repositories
 
         IEnumerable<TEntity> Get(Expression<Func<TEntity, bool>> filter = null);
 
-        TEntity Update(TEntity entity, int updatorId);
+        TEntity Update(TEntity entity, int updaterId);
 
         TEntity Deactivate(TEntity entity, int deactivatorId);
 

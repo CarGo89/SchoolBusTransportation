@@ -74,24 +74,24 @@ namespace SchoolBus.DataAccess.Repositories
             return _repository.Add(entity);
         }
 
-        public TEntity Update(TEntity entity, int updatorId)
+        public TEntity Update(TEntity entity, int updaterId)
         {
             var entityToUpdate = _repository.Single(savedEntity => savedEntity.Id == entity.Id);
 
             if (entityToUpdate == null)
             {
                 return entity;
-
             }
+
             entity.UpdatedBy = null;
-            entity.UpdatedById = updatorId;
+            entity.UpdatedById = updaterId;
             entity.UpdatedAt = DateTime.Now;
 
-            entity.CreatedBy = entityToUpdate.CreatedBy;
+            entity.CreatedBy = null;
             entity.CreatedById = entityToUpdate.CreatedById;
             entity.CreatedAt = entityToUpdate.CreatedAt;
 
-            entity.DeactivatedBy = entityToUpdate.DeactivatedBy;
+            entity.DeactivatedBy = null;
             entity.DeactivatedById = entityToUpdate.DeactivatedById;
             entity.DeactivatedAt = entityToUpdate.DeactivatedAt;
 
@@ -115,7 +115,7 @@ namespace SchoolBus.DataAccess.Repositories
             entity.UpdatedById = deactivatorId;
             entity.UpdatedAt = DateTime.Now;
 
-            entity.CreatedBy = entityToDeactivate.CreatedBy;
+            entity.CreatedBy = null;
             entity.CreatedById = entityToDeactivate.CreatedById;
             entity.CreatedAt = entityToDeactivate.CreatedAt;
 
