@@ -9,7 +9,7 @@ namespace SchoolBus.DataAccess
         #region Constructors
 
         public SchoolBusDataModel()
-            : base("name=SchoolBusDataModel")
+            : this("name=SchoolBusDataModel")
         {
         }
 
