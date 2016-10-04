@@ -40,6 +40,10 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
+    <Reference Include="Dpr.Core, Version=1.0.0.3, Culture=neutral, PublicKeyToken=74cf9f1320e2924f, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\..\ReusableComponents\Dpr.Core\Dpr.Core\bin\Release\Dpr.Core.dll</HintPath>
+    </Reference>
     <Reference Include="Microsoft.CSharp" />
     <Reference Include="System.Web.DynamicData" />
     <Reference Include="System.Web.Entity" />
@@ -900,6 +904,11 @@
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
+    <Compile Include="Models\Address.cs" />
+    <Compile Include="Models\ModelBase.cs" />
+    <Compile Include="Models\Validations\MaxLengthFieldAttribute.cs" />
+    <Compile Include="Models\Validations\RangeRequiredFieldAttribute.cs" />
+    <Compile Include="Models\Validations\RequiredFieldAttribute.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
@@ -917,7 +926,13 @@
   <ItemGroup>
     <Folder Include="App_Data\" />
     <Folder Include="Controllers\" />
-    <Folder Include="Models\" />
+    <Folder Include="Views\a\" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\SchoolBus\SchoolBus.csproj">
+      <Project>{edbee383-c3a2-45c4-9700-934e158c3112}</Project>
+      <Name>SchoolBus</Name>
+    </ProjectReference>
   </ItemGroup>
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>
