@@ -1,9 +1,8 @@
 ﻿using System;
-using SchoolBus.DataAccess.Entities;
 
 namespace SchoolBusWeb.Models
 {
-    public abstract class ModelBase : IEntity
+    public abstract class ModelBase
     {
         #region Properties
 

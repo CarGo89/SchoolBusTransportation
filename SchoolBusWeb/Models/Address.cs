@@ -10,7 +10,7 @@ namespace SchoolBusWeb.Models
         [MaxLengthField(500, "Calle")]
         public string Street { get; set; }
 
-        [RangeRequiredFieldAttribute(1, int.MaxValue, "Código Postal")]
+        [RangeRequiredField(1, int.MaxValue, "Código Postal")]
         public int ZipCode { get; set; }
 
         [RequiredField("Ciudad", AllowEmptyStrings = false)]
