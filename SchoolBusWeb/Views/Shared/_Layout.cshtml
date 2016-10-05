@@ -8,13 +8,14 @@
     <meta name="description" content="">
     <meta name="author" content="">
 
-    <title>Transporte Escolar</title>
+    <title>Transporte Escolar - @ViewBag.Title</title>
 
     @Styles.Render(
         "~/Content/bootstrap.min.css",
         "~/Content/bootstrap-datetimepicker.min.css",
         "~/Content/bootstrap-theme.min.css",
-        "~/css/font-awesome.min.css")
+        "~/css/font-awesome.min.css",
+        "~/Content/school-bus-transportation.css")
 
     @RenderSection("Styles", false)
 </head>
@@ -43,7 +44,7 @@
                         @Html.ActionLink("Chofer", "Index", "Chofer", null, new { @class = "set-loading-panel" })
                     </li>
                     <li>
-                        @Html.ActionLink("Camion", "Index", "Camion", null, new { @class = "set-loading-panel" })
+                        @Html.ActionLink("Camión", "Index", "Camion", null, new { @class = "set-loading-panel" })
                     </li>
                     <li>
                         @Html.ActionLink("Alumno", "Index", "Alumno", null, new { @class = "set-loading-panel" })
@@ -63,16 +64,6 @@
     </nav>
 
     <div class="container">
-
-        @*<div class="jumbotron">
-                <h1>Navbar example</h1>
-                <p>This example is a quick exercise to illustrate how the default, static and fixed to top navbar work. It includes the responsive CSS and HTML, so it also adapts to your viewport and device.</p>
-                <p>To see the difference between static and fixed top navbars, just scroll.</p>
-                <p>
-                    <a class="btn btn-lg btn-primary" href="" role="button">View navbar docs &raquo;</a>
-                </p>
-            </div>*@
-
         @RenderBody()
     </div>
 
