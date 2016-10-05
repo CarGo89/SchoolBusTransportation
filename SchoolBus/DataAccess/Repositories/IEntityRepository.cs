@@ -12,6 +12,8 @@ namespace SchoolBus.DataAccess.Repositories
 
         IEnumerable<TEntity> Get(Expression<Func<TEntity, bool>> filter = null);
 
+        TEntity Add(TEntity entity, int creatorId);
+
         TEntity Update(TEntity entity, int updaterId);
 
         TEntity Deactivate(TEntity entity, int deactivatorId);
