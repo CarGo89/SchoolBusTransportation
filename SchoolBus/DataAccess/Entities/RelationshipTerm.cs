@@ -34,7 +34,7 @@ namespace SchoolBus.DataAccess.Entities
 
         #region Properties
 
-        [Column(TypeName = "VARCHAR"), MaxLength(500), Index("UQ_RelationshipTerm", IsUnique = true)]
+        [Required, Column(TypeName = "VARCHAR"), MaxLength(500), Index("UQ_RelationshipTerm", IsUnique = true)]
         public string Term { get; set; }
 
         #endregion Properties

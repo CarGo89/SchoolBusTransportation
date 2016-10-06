@@ -61,6 +61,7 @@
     <Compile Include="DataAccess\Entities\Relationships\StudentTutor.cs" />
     <Compile Include="DataAccess\Entities\Relationships\StudentTutorAddress.cs" />
     <Compile Include="DataAccess\Entities\RelationshipTerm.cs" />
+    <Compile Include="DataAccess\Entities\UserRole.cs" />
     <Compile Include="DataAccess\Repositories\EntityRepository.cs" />
     <Compile Include="DataAccess\Repositories\IEntityRepository.cs" />
     <Compile Include="DataAccess\SchoolBusDataModel.cs" />

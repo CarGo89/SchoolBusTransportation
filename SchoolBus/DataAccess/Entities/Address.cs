@@ -36,15 +36,18 @@ namespace SchoolBus.DataAccess.Entities
 
         #region Properties
 
-        [Column(TypeName = "VARCHAR"), MaxLength(500)]
+        [Required, Column(TypeName = "VARCHAR"), MaxLength(500)]
         public string Street { get; set; }
 
         public int ZipCode { get; set; }
 
-        [Column(TypeName = "VARCHAR"), MaxLength(500)]
+        [Required, Column(TypeName = "VARCHAR"), MaxLength(500)]
+        public string Neighborhood { get; set; }
+
+        [Required, Column(TypeName = "VARCHAR"), MaxLength(500)]
         public string City { get; set; }
 
-        [Column(TypeName = "VARCHAR"), MaxLength(500)]
+        [Required, Column(TypeName = "VARCHAR"), MaxLength(500)]
         public string State { get; set; }
 
         #endregion Properties

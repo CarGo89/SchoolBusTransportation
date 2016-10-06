@@ -34,13 +34,13 @@ namespace SchoolBus.DataAccess.Entities
 
         #region Properties
 
-        [Column(TypeName = "VARCHAR"), MaxLength(500)]
+        [Required, Column(TypeName = "VARCHAR"), MaxLength(500)]
         public virtual string FirstName { get; set; }
 
         [Column(TypeName = "VARCHAR"), MaxLength(500)]
         public virtual string MiddleName { get; set; }
 
-        [Column(TypeName = "VARCHAR"), MaxLength(500)]
+        [Required, Column(TypeName = "VARCHAR"), MaxLength(500)]
         public virtual string LastName { get; set; }
 
         [Column(TypeName = "VARCHAR"), MaxLength(500)]
@@ -48,6 +48,20 @@ namespace SchoolBus.DataAccess.Entities
 
         public virtual DateTime? BirthDate { get; set; }
 
+        [Required, Column(TypeName = "VARCHAR"), MaxLength(500)]
+        public virtual string Email { get; set; }
+
+        [Required, Column(TypeName = "VARCHAR"), MaxLength(500)]
+        public virtual string Password { get; set; }
+
         #endregion Properties
+
+        #region Navigation Properties
+
+        public int UserRoleId { get; set; }
+
+        public virtual UserRole UserRole { get; set; }
+
+        #endregion Navigation Properties
     }
 }

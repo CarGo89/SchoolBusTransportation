@@ -36,15 +36,15 @@ namespace SchoolBus.DataAccess.Entities
 
         #region Properties
 
-        [Column(TypeName = "VARCHAR"), MaxLength(500)]
+        [Required, Column(TypeName = "VARCHAR"), MaxLength(500)]
         public string Manufacturer { get; set; }
 
         public int Year { get; set; }
 
-        [Column(TypeName = "VARCHAR"), MaxLength(20)]
+        [Required, Column(TypeName = "VARCHAR"), MaxLength(20)]
         public string Registration { get; set; }
 
-        [Column(TypeName = "VARCHAR"), MaxLength(500)]
+        [Required, Column(TypeName = "VARCHAR"), MaxLength(500)]
         public string Color { get; set; }
 
         public int Capacity { get; set; }

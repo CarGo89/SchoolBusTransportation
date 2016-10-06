@@ -26,6 +26,8 @@ namespace SchoolBus.DataAccess
 
         public virtual DbSet<User> Users { get; set; }
 
+        public virtual DbSet<UserRole> UserRoles { get; set; }
+
         public virtual DbSet<Student> Students { get; set; }
 
         public virtual DbSet<Driver> Drivers { get; set; }

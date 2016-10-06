@@ -1016,7 +1016,6 @@
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\ModelControllerBase.cs" />
     <Compile Include="Controllers\RelationshipTermController.cs" />
-    <Compile Include="Controllers\SchoolYearController.cs" />
     <Compile Include="Controllers\StudentController.cs" />
     <Compile Include="Controllers\TutorController.cs" />
     <Compile Include="Extensions\ModelExtension.cs" />
@@ -1046,7 +1045,6 @@
     <Content Include="Scripts\jquery-1.9.1.min.map" />
     <Content Include="Scripts\version.json" />
     <Content Include="Views\Shared\_Layout.cshtml" />
-    <Content Include="Views\SchoolYear\Index.cshtml" />
     <Content Include="Views\Account\Index.cshtml" />
     <Content Include="Views\Bus\Index.cshtml" />
     <Content Include="Views\Driver\Index.cshtml" />
