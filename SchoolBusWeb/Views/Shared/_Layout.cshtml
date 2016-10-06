@@ -38,9 +38,6 @@
                         @Html.ActionLink("Inicio", "Index", "Home", null, new { @class = "set-loading-panel" })
                     </li>
                     <li>
-                        @Html.ActionLink("Ciclo Escolar", "Index", "CicloEscolar", null, new { @class = "set-loading-panel" })
-                    </li>
-                    <li>
                         @Html.ActionLink("Chofer", "Index", "Chofer", null, new { @class = "set-loading-panel" })
                     </li>
                     <li>
@@ -67,11 +64,14 @@
         @RenderBody()
     </div>
 
-    @Scripts.Render(
+        @Scripts.Render(
         "~/Scripts/jquery-1.9.1.min.js",
         "~/Scripts/bootstrap.min.js",
         "~/Scripts/moment.min.js",
-        "~/Scripts/bootstrap-datetimepicker.min.js")
+        "~/Scripts/bootstrap-datetimepicker.min.js",
+        "~/Scripts/angular.min.js",
+        "~/Scripts/angular-animate.min.js",
+        "~/Scripts/controllers/navigation-controller.js")
 
     @RenderSection("Scripts", false)
 </body>

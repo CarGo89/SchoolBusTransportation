@@ -1,7 +1,99 @@
 ﻿@{
     ViewBag.Title = "Chofer";
-    
+
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
 
-<h2>Ciclo Escolar</h2>
+<div ng-controller="navigationController">
+
+    <div class="row" ng-hide="editMode">
+        <div class="col-sm-12 col-md-12 col-lg-12">
+            <table class="table table-bordered table-condensed table-hover table-responsive">
+                <thead>
+                    <tr class="text-center">
+                        <th>Nombre</th>
+                        <th>Segundo Nombre</th>
+                        <th>Apellido Paterno</th>
+                        <th>Apellido Materno</th>
+                        <th>Fecha Nacimiento</th>
+                        <th colspan="2">&nbsp;</th>
+                    </tr>
+                </thead>
+
+                <tbody>
+                    <tr>
+                        <td>&nbsp;</td>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                        <td class="text-center">
+                            <span class="text-primary" title="Editar" ng-click="setEditMode()">
+                                <i class="glyphicon glyphicon-pencil"></i>
+                            </span>
+                        </td>
+                        <td class="text-center">
+                            <span class="text-danger" title="Eliminar">
+                                <i class="glyphicon glyphicon-remove"></i>
+                            </span>
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+    </div>
+
+    <div class="row" ng-hide="!editMode">
+        <div class="col-sm-offset-2 col-md-offset-2 col-lg-offset-2 ol-sm-8 col-md-8 col-lg-8">
+            <form class="form-horizontal">
+                <div class="form-group">
+                    <label for="FirstName" class="control-label col-sm-3 col-md-3 col-lg-3">Nombre:</label>
+                    <div class="col-sm-5 col-md-5 col-lg-5">
+                        <input id="FirstName" type="text" class="form-control" placeholder="Nombre" />
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <label for="MiddleName" class="control-label col-sm-3 col-md-3 col-lg-3">Segundo Nombre:</label>
+                    <div class="col-sm-5 col-md-5 col-lg-5">
+                        <input id="MiddleName" type="text" class="form-control" placeholder="Segundo Nombre" />
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <label for="LastName" class="control-label col-sm-3 col-md-3 col-lg-3">Apellido Paterno:</label>
+                    <div class="col-sm-5 col-md-5 col-lg-5">
+                        <input id="LastName" type="text" class="form-control" placeholder="Apellido Paterno" />
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <label for="SecondLastName" class="control-label col-sm-3 col-md-3 col-lg-3">Apellido Materno:</label>
+                    <div class="col-sm-5 col-md-5 col-lg-5">
+                        <input id="SecondLastName" type="text" class="form-control" placeholder="Apellido Materno" />
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <label for="BirthDate" class="control-label col-sm-3 col-md-3 col-lg-3">Fecha Nacimiento:</label>
+                    <div class="col-sm-4 col-md-4 col-lg-4">
+                        <div class="input-group">
+                            <span class="input-group-addon">
+                                <i class="glyphicon glyphicon-calendar"></i>
+                            </span>
+                            <input id="BirthDate" type="date" class="form-control" placeholder="Fecha Nacimiento" />
+                        </div>
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <div class="col-sm-offset-3 col-md-offset-3 col-lg-offset-3 col-sm-4 col-md-4 col-lg-4">
+                        <button type="button" class="btn btn-primary" ng-click="setEditMode()">Guardar</button>
+                        <button type="button" class="btn btn-link" ng-click="setEditMode()">Cancelar</button>
+                    </div>
+                </div>
+            </form>
+        </div>
+    </div>
+
+</div>
