@@ -15,11 +15,13 @@
         "~/Content/bootstrap-datetimepicker.min.css",
         "~/Content/bootstrap-theme.min.css",
         "~/css/font-awesome.min.css",
+        "~/Scripts/datatable/css/dataTables.bootstrap.css",
+        "~/Scripts/datatable/responsive/css/dataTables.responsive.css",
         "~/Content/school-bus-transportation.css")
 
     @RenderSection("Styles", false)
 </head>
-<body ng-app="schoolBus" date-format="dd/mm/yyyy">
+<body ng-app="schoolBus">
 
     <nav class="navbar navbar-default navbar-fixed-top">
         <div class="container">
@@ -64,14 +66,17 @@
         @RenderBody()
     </div>
 
-        @Scripts.Render(
+    @Scripts.Render(
         "~/Scripts/jquery-1.9.1.min.js",
         "~/Scripts/bootstrap.min.js",
         "~/Scripts/moment.min.js",
         "~/Scripts/bootstrap-datetimepicker.min.js",
-        "~/Scripts/angular.min.js",
+        "~/Scripts/angular.js",
         "~/Scripts/angular-animate.min.js",
-        "~/Scripts/controllers/navigation-controller.js")
+        "~/Scripts/datatable/js/jquery.dataTables.js",
+        "~/Scripts/datatable/responsive/js/dataTables.responsive.min.js",
+        "~/Scripts/datatable/js/dataTables.bootstrap.js",
+        "~/Scripts/utilities/angular-directives.js")
 
     @RenderSection("Scripts", false)
 </body>

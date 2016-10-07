@@ -4,73 +4,90 @@
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
 
-<div ng-controller="navigationController">
+<div ng-controller="driverController" navigation-container ng-switch on="pageMode">
 
-    <div class="row" ng-hide="editMode">
-        <div class="col-sm-12 col-md-12 col-lg-12">
-            <table class="table table-bordered table-condensed table-hover table-responsive">
-                <thead>
-                    <tr class="text-center">
-                        <th>Nombre</th>
-                        <th>Segundo Nombre</th>
-                        <th>Apellido Paterno</th>
-                        <th>Apellido Materno</th>
-                        <th>Fecha Nacimiento</th>
-                        <th colspan="2">&nbsp;</th>
-                    </tr>
-                </thead>
+    <div ng-switch-when="read">
+        <div class="row">
+            <div class="col-sm-offset-5 col-md-offset-5 col-lg-offset-5">
+                <button type="button" class="btn btn-success" ng-click="setEditMode()">Agregar</button>
+            </div>
+            </div>
+        <div class="row">
+            <div class="col-sm-12 col-md-12 col-lg-12">
+                <table width="100%" class="table table-striped table-bordered table-condensed table-hover dt-responsive" responsive-data-table>
+                    <thead>
+                        <tr class="text-center">
+                            <th>Nombre</th>
+                            <th>Segundo Nombre</th>
+                            <th>Apellido Paterno</th>
+                            <th>Apellido Materno</th>
+                            <th>Fecha Nacimiento</th>
+                            <th colspan="2">&nbsp;</th>
+                        </tr>
+                    </thead>
 
-                <tbody>
-                    <tr>
-                        <td>&nbsp;</td>
-                        <td></td>
-                        <td></td>
-                        <td></td>
-                        <td></td>
-                        <td class="text-center">
-                            <span class="text-primary" title="Editar" ng-click="setEditMode()">
-                                <i class="glyphicon glyphicon-pencil"></i>
-                            </span>
-                        </td>
-                        <td class="text-center">
-                            <span class="text-danger" title="Eliminar">
-                                <i class="glyphicon glyphicon-remove"></i>
-                            </span>
-                        </td>
-                    </tr>
-                </tbody>
-            </table>
+                    <tbody>
+                        <tr ng-repeat="driver in drivers" ng-init="initDataTable($last)">
+                            <td>
+                                <span ng-bind="driver.Name"></span>
+                            </td>
+                            <td>
+                                <span ng-bind="driver.MiddleName"></span>
+                            </td>
+                            <td>
+                                <span ng-bind="driver.LastName"></span>
+                            </td>
+                            <td>
+                                <span ng-bind="driver.SecondLastName"></span>
+                            </td>
+                            <td class="text-center">
+                                <span ng-bind="driver.BirthDate"></span>
+                            </td>
+                            <td>
+                                <span class="text-primary" title="Editar" ng-click="edit(driver)">
+                                    <i class="glyphicon glyphicon-pencil"></i>
+                                </span>
+                            </td>
+                            <td>
+                                <span class="text-danger" title="Eliminar">
+                                    <i class="glyphicon glyphicon-remove"></i>
+                                </span>
+                            </td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
         </div>
     </div>
 
-    <div class="row" ng-hide="!editMode">
-        <div class="col-sm-offset-2 col-md-offset-2 col-lg-offset-2 ol-sm-8 col-md-8 col-lg-8">
+    <div class="row" ng-switch-when="edit">
+        <div class="col-sm-offset-3 col-md-offset-3 col-lg-offset-3 col-sm-8 col-md-8 col-lg-8">
             <form class="form-horizontal">
                 <div class="form-group">
                     <label for="FirstName" class="control-label col-sm-3 col-md-3 col-lg-3">Nombre:</label>
                     <div class="col-sm-5 col-md-5 col-lg-5">
-                        <input id="FirstName" type="text" class="form-control" placeholder="Nombre" />
+                        <input id="FirstName" type="text" class="form-control" placeholder="Nombre" ng-model="driverToUpdate.Name" />
                     </div>
                 </div>
 
                 <div class="form-group">
                     <label for="MiddleName" class="control-label col-sm-3 col-md-3 col-lg-3">Segundo Nombre:</label>
                     <div class="col-sm-5 col-md-5 col-lg-5">
-                        <input id="MiddleName" type="text" class="form-control" placeholder="Segundo Nombre" />
+                        <input id="MiddleName" type="text" class="form-control" placeholder="Segundo Nombre" ng-model="driverToUpdate.MiddleName" />
                     </div>
                 </div>
 
                 <div class="form-group">
                     <label for="LastName" class="control-label col-sm-3 col-md-3 col-lg-3">Apellido Paterno:</label>
                     <div class="col-sm-5 col-md-5 col-lg-5">
-                        <input id="LastName" type="text" class="form-control" placeholder="Apellido Paterno" />
+                        <input id="LastName" type="text" class="form-control" placeholder="Apellido Paterno" ng-model="driverToUpdate.LastName" />
                     </div>
                 </div>
 
                 <div class="form-group">
                     <label for="SecondLastName" class="control-label col-sm-3 col-md-3 col-lg-3">Apellido Materno:</label>
                     <div class="col-sm-5 col-md-5 col-lg-5">
-                        <input id="SecondLastName" type="text" class="form-control" placeholder="Apellido Materno" />
+                        <input id="SecondLastName" type="text" class="form-control" placeholder="Apellido Materno" ng-model="driverToUpdate.SecondLastName" />
                     </div>
                 </div>
 
@@ -81,15 +98,15 @@
                             <span class="input-group-addon">
                                 <i class="glyphicon glyphicon-calendar"></i>
                             </span>
-                            <input id="BirthDate" type="date" class="form-control" placeholder="Fecha Nacimiento" />
+                            <input id="BirthDate" type="text" class="form-control" placeholder="Fecha Nacimiento" ng-model="driverToUpdate.BirthDate" />
                         </div>
                     </div>
                 </div>
 
                 <div class="form-group">
                     <div class="col-sm-offset-3 col-md-offset-3 col-lg-offset-3 col-sm-4 col-md-4 col-lg-4">
-                        <button type="button" class="btn btn-primary" ng-click="setEditMode()">Guardar</button>
-                        <button type="button" class="btn btn-link" ng-click="setEditMode()">Cancelar</button>
+                        <button type="button" class="btn btn-primary" ng-click="cancelEdit()">Guardar</button>
+                        <button type="button" class="btn btn-link" ng-click="cancelEdit()">Cancelar</button>
                     </div>
                 </div>
             </form>
@@ -97,3 +114,8 @@
     </div>
 
 </div>
+
+@section Scripts
+{
+    @Scripts.Render("~/Scripts/controllers/driver-controller.js")
+}
