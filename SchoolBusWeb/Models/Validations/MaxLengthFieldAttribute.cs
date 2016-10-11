@@ -10,6 +10,15 @@ namespace SchoolBusWeb.Models.Validations
 
         #endregion Fields
 
+        #region Properties
+
+        public string FieldName
+        {
+            get { return _fieldName; }
+        }
+
+        #endregion Properties
+
         #region Constructors
 
         public MaxLengthFieldAttribute(int length, string fieldName)
@@ -22,22 +31,13 @@ namespace SchoolBusWeb.Models.Validations
 
         #endregion Constructors
 
-        #region Properties
-
-        public string FieldName
-        {
-            get { return _fieldName; }
-        }
-
-        #endregion Properties
-
         #region Public Methods
 
         public override bool IsValid(object value)
         {
             var modelProperty = value as ModelPropertyBase;
 
-            return base.IsValid(modelProperty != null ? modelProperty.Value : value);
+            return base.IsValid(modelProperty != null ? modelProperty.ValueBase : value);
         }
 
         #endregion Public Methods

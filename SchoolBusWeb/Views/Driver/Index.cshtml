@@ -14,7 +14,7 @@
         </div>
         <div class="row">
             <div class="col-sm-12 col-md-12 col-lg-12">
-                <table width="100%" class="table table-striped table-bordered table-condensed table-hover dt-responsive" responsive-data-table>
+                <table width="100%" class="table table-striped table-bordered table-condensed table-hover dt-responsive">
                     <thead>
                         <tr class="text-center">
                             <th>Email</th>
@@ -28,7 +28,7 @@
                     </thead>
 
                     <tbody>
-                        <tr ng-repeat="driver in drivers" ng-init="initDataTable($last)">
+                        <tr ng-repeat="driver in drivers" responsive-table-rendered>
                             <td>
                                 <span ng-bind="driver.Email.Value"></span>
                             </td>
@@ -66,19 +66,25 @@
 
     <div class="row" ng-switch-when="edit">
         <div class="col-sm-offset-3 col-md-offset-3 col-lg-offset-3 col-sm-8 col-md-8 col-lg-8">
+            <div class="">
+                <div class="text-center" role="alert" ng-class="{'alert alert-danger': currentDriver.IsValid !== true}" ng-show="currentDriver.IsValid !== true">
+                    Existen errores en la información enviada.
+                </div>
+            </div>
+
             <form class="form-horizontal">
                 <div class="form-group" ng-class="{'has-error has-feedback': currentDriver.Email.IsValid == false}">
                     <label for="Email" class="control-label col-sm-3 col-md-3 col-lg-3">Email:</label>
                     <div class="col-sm-5 col-md-5 col-lg-5">
-                        <input id="Email" type="text" class="form-control" placeholder="Email" ng-model="currentDriver.Email.Value" ng-change="currentDriver.Email.IsValid = true" />
-                        <span class="glyphicon glyphicon-warning-sign form-control-feedback" aria-hidden="true" ng-attr-title="currentDriver.Email.ErrorMessage" ng-show="currentDriver.Email.IsValid == false"></span>
+                        <input id="Email" type="text" class="form-control" placeholder="Email" ng-model="currentDriver.Email.Value" ng-change="currentDriver.Email.IsValid = true" title="{{ currentDriver.Email.ErrorMessage }}" />
+                        <span class="glyphicon glyphicon-warning-sign form-control-feedback" aria-hidden="true" ng-show="currentDriver.Email.IsValid == false"></span>
                     </div>
                 </div>
 
                 <div class="form-group" ng-class="{'has-error has-feedback': currentDriver.FirstName.IsValid == false}">
                     <label for="FirstName" class="control-label col-sm-3 col-md-3 col-lg-3">Nombre:</label>
                     <div class="col-sm-5 col-md-5 col-lg-5">
-                        <input id="FirstName" type="text" class="form-control" placeholder="Nombre" ng-model="currentDriver.FirstName.Value" ng-change="currentDriver.FirstName.IsValid = true" />
+                        <input id="FirstName" type="text" class="form-control" placeholder="Nombre" ng-model="currentDriver.FirstName.Value" ng-change="currentDriver.FirstName.IsValid = true" title="{{ currentDriver.FirstName.ErrorMessage }}" />
                         <span class="glyphicon glyphicon-warning-sign form-control-feedback" aria-hidden="true" ng-show="currentDriver.FirstName.IsValid == false"></span>
                     </div>
                 </div>
@@ -86,7 +92,7 @@
                 <div class="form-group" ng-class="{'has-error has-feedback': currentDriver.MiddleName.IsValid == false}">
                     <label for="MiddleName" class="control-label col-sm-3 col-md-3 col-lg-3">Segundo Nombre:</label>
                     <div class="col-sm-5 col-md-5 col-lg-5">
-                        <input id="MiddleName" type="text" class="form-control" placeholder="Segundo Nombre" ng-model="currentDriver.MiddleName.Value" ng-change="currentDriver.MiddleName.IsValid = true" />
+                        <input id="MiddleName" type="text" class="form-control" placeholder="Segundo Nombre" ng-model="currentDriver.MiddleName.Value" ng-change="currentDriver.MiddleName.IsValid = true" title="{{ currentDriver.MiddleName.ErrorMessage }}" />
                         <span class="glyphicon glyphicon-warning-sign form-control-feedback" aria-hidden="true" ng-show="currentDriver.MiddleName.IsValid == false"></span>
                     </div>
                 </div>
@@ -94,7 +100,7 @@
                 <div class="form-group" ng-class="{'has-error has-feedback': currentDriver.LastName.IsValid == false}">
                     <label for="LastName" class="control-label col-sm-3 col-md-3 col-lg-3">Apellido Paterno:</label>
                     <div class="col-sm-5 col-md-5 col-lg-5">
-                        <input id="LastName" type="text" class="form-control" placeholder="Apellido Paterno" ng-model="currentDriver.LastName.Value" ng-change="currentDriver.LastName.IsValid = true" />
+                        <input id="LastName" type="text" class="form-control" placeholder="Apellido Paterno" ng-model="currentDriver.LastName.Value" ng-change="currentDriver.LastName.IsValid = true" title="{{ currentDriver.LastName.ErrorMessage }}" />
                         <span class="glyphicon glyphicon-warning-sign form-control-feedback" aria-hidden="true" ng-show="currentDriver.LastName.IsValid == false"></span>
                     </div>
                 </div>
@@ -102,7 +108,7 @@
                 <div class="form-group" ng-class="{'has-error has-feedback': currentDriver.SecondLastName.IsValid == false}">
                     <label for="SecondLastName" class="control-label col-sm-3 col-md-3 col-lg-3">Apellido Materno:</label>
                     <div class="col-sm-5 col-md-5 col-lg-5">
-                        <input id="SecondLastName" type="text" class="form-control" placeholder="Apellido Materno" ng-model="currentDriver.SecondLastName.Value" ng-change="currentDriver.SecondLastName.IsValid = true" />
+                        <input id="SecondLastName" type="text" class="form-control" placeholder="Apellido Materno" ng-model="currentDriver.SecondLastName.Value" ng-change="currentDriver.SecondLastName.IsValid = true" title="{{ currentDriver.SecondLastName.ErrorMessage }}" />
                         <span class="glyphicon glyphicon-warning-sign form-control-feedback" aria-hidden="true" ng-show="currentDriver.SecondLastName.IsValid == false"></span>
                     </div>
                 </div>

@@ -10,6 +10,15 @@ namespace SchoolBusWeb.Models.Validations
 
         #endregion Fields
 
+        #region Properties
+
+        public string FieldName
+        {
+            get { return _fieldName; }
+        }
+
+        #endregion Properties
+
         #region Constructors
 
         public EmailAddressValidatorAttribute(string fieldName)
@@ -21,21 +30,12 @@ namespace SchoolBusWeb.Models.Validations
 
         #endregion Constructors
 
-        #region Properties
-
-        public string FieldName
-        {
-            get { return _fieldName; }
-        }
-
-        #endregion Properties
-
         #region Public Methods
 
         public override bool IsValid(object value)
         {
             var modelProperty = value as ModelPropertyBase;
-            var actualValue = modelProperty != null ? modelProperty.Value : value;
+            var actualValue = modelProperty != null ? modelProperty.ValueBase : value;
             var emailAddressValidator = new EmailAddressAttribute();
 
             return emailAddressValidator.IsValid(actualValue);

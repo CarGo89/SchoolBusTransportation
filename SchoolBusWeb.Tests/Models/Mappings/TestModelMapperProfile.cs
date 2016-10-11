@@ -9,7 +9,7 @@ namespace SchoolBusWeb.Tests.Models.Mappings
         public TestModelMapperProfile()
         {
             CreateMap<SchoolBusWeb.Models.ModelProperty<string>, string>()
-                .ConvertUsing(src => src.GenericValue);
+                .ConvertUsing(src => src.Value);
 
             CreateMap<string, SchoolBusWeb.Models.ModelProperty<string>>()
                 .ConvertUsing(src => new SchoolBusWeb.Models.ModelProperty<string>(src));

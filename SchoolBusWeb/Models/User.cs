@@ -1,6 +1,5 @@
-﻿using System;
-using System.ComponentModel.DataAnnotations;
-using System.Xml.Serialization;
+﻿using System.ComponentModel.DataAnnotations;
+using System.Web.Script.Serialization;
 using SchoolBusWeb.Models.Validations;
 
 namespace SchoolBusWeb.Models
@@ -35,7 +34,7 @@ namespace SchoolBusWeb.Models
         [DataType(DataType.Date)]
         public virtual string BirthDate { get; set; }
 
-        [XmlIgnore]
+        [ScriptIgnore]
         public virtual int UserRoleId { get; set; }
 
         #endregion Properties

@@ -10,7 +10,7 @@ namespace SchoolBusWeb.Models.Mappings
         public ModelMapperProfile()
         {
             CreateMap<ModelProperty<string>, string>()
-                .ConvertUsing(src => src == null ? string.Empty : src.GenericValue);
+                .ConvertUsing(src => src == null ? string.Empty : src.Value);
 
             CreateMap<string, ModelProperty<string>>()
                 .ConvertUsing(src => new ModelProperty<string>(src));
@@ -29,7 +29,7 @@ namespace SchoolBusWeb.Models.Mappings
                });
 
             CreateMap<DateTime?, string>()
-                .ConvertUsing(src => src == null ? string.Empty : src.ToString());
+                .ConvertUsing(src => src.HasValue ? src.Value.ToShortDateString() : string.Empty);
 
             CreateMap<SchoolBus.DataAccess.Entities.User, User>();
             CreateMap<User, SchoolBus.DataAccess.Entities.User>()

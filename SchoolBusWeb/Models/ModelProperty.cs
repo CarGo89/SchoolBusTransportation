@@ -4,13 +4,13 @@
     {
         #region Properties
 
-        public override object Value
+        public override object ValueBase
         {
-            get { return GenericValue; }
-            set { GenericValue = (TValue)value; }
+            get { return Value; }
+            set { Value = (TValue)value; }
         }
 
-        public TValue GenericValue { get; set; }
+        public TValue Value { get; set; }
 
         #endregion Properties
 
@@ -22,16 +22,25 @@
 
         public ModelProperty(TValue value)
         {
-            GenericValue = value;
+            Value = value;
         }
 
         #endregion Constructors
+
+        #region Public Methods
+
+        public override string ToString()
+        {
+            return string.Format("Value: {0}", Value);
+        }
+
+        #endregion Public Methods
 
         #region Implicit Operators
 
         public static implicit operator TValue(ModelProperty<TValue> property)
         {
-            return property.GenericValue;
+            return property.Value;
         }
 
         public static implicit operator ModelProperty<TValue>(TValue value)

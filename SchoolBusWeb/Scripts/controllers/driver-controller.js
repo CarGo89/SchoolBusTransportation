@@ -5,7 +5,7 @@
 
     schoolBus.directive("navigationContainer", window.angularDirectives.navigationContainer);
 
-    schoolBus.directive("responsiveDataTable", window.angularDirectives.responsiveDataTable);
+    schoolBus.directive("responsiveTableRendered", window.angularDirectives.responsiveTableRendered);
 
     schoolBus.directive("datePicker", window.angularDirectives.datePicker);
 
@@ -21,11 +21,13 @@
             infoFiltered: "(Choferes filtrados de _MAX_)"
         };
 
-        $scope.drivers = $scope.data = [];
-        $scope.currentDriver = {};
+        $scope.drivers = [];
+        $scope.currentDriver = {
+            IsValid: true
+        };
 
         $scope.edit = function (driver) {
-            $scope.currentDriver = $.extend(true, {}, driver);;
+            $scope.currentDriver = $.extend(true, {}, driver);
 
             $scope.setEditMode();
         };
@@ -37,9 +39,13 @@
         };
 
         $scope.get = function () {
-            $http.get("Chofer/Get").then(
+            var getUrl = ("Chofer/Get?cache=").concat(new Date().valueOf());
+
+            $scope.drivers = [];
+
+            $http.get(getUrl).then(
                 function (response) {
-                    $scope.drivers = $scope.data = response.data;
+                    $scope.drivers = response.data;
                 }, function (response) {
                     response;
                 });
@@ -52,6 +58,8 @@
 
                     if (response.data.IsValid === true) {
                         $scope.cancelEdit();
+
+                        $scope.get();
                     }
                 }, function (response) {
                     response;
@@ -61,9 +69,13 @@
         $scope.update = function () {
             $http.post("Chofer/Update", $scope.currentDriver).then(
                 function (response) {
-                    $scope.drivers = $scope.data = response.data;
+                    $scope.currentDriver = response.data;
 
-                    $scope.cancelEdit();
+                    if (response.data.IsValid === true) {
+                        $scope.cancelEdit();
+
+                        $scope.get();
+                    }
                 }, function (response) {
                     response;
                 });

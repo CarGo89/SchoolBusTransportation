@@ -10,6 +10,15 @@ namespace SchoolBusWeb.Models.Validations
 
         #endregion Fields
 
+        #region Properties
+
+        public string FieldName
+        {
+            get { return _fieldName; }
+        }
+
+        #endregion Properties
+
         #region Constructors
 
         public RequiredFieldAttribute(string fieldName)
@@ -21,13 +30,16 @@ namespace SchoolBusWeb.Models.Validations
 
         #endregion Constructors
 
-        #region Properties
+        #region Public Methods
 
-        public string FieldName
+        public override bool IsValid(object value)
         {
-            get { return _fieldName; }
+            var modelProperty = value as ModelPropertyBase;
+            var actualValue = modelProperty != null ? modelProperty.ValueBase : value;
+
+            return base.IsValid(actualValue);
         }
 
-        #endregion Properties
+        #endregion Public Methods
     }
 }

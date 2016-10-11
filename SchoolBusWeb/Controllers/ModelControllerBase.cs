@@ -12,7 +12,6 @@ using Dpr.Core.Logging;
 using SchoolBus.DataAccess.Repositories;
 using SchoolBusWeb.Extensions;
 using SchoolBusWeb.Models;
-using SchoolBusWeb.Models.Mappings;
 using SchoolBusWeb.Utilities;
 
 namespace SchoolBusWeb.Controllers
@@ -123,7 +122,7 @@ namespace SchoolBusWeb.Controllers
             return addedModel.ToJsonResult();
         }
 
-        [HttpPut]
+        [HttpPost]
         public virtual ActionResult Update(TModel model)
         {
             model.IsValid = ModelState.IsValid;

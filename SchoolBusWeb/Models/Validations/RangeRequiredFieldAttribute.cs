@@ -11,6 +11,15 @@ namespace SchoolBusWeb.Models.Validations
 
         #endregion Fields
 
+        #region Properties
+
+        public string FieldName
+        {
+            get { return _fieldName; }
+        }
+
+        #endregion Properties
+
         #region Constructors
 
         public RangeRequiredFieldAttribute(int minimum, int maximum, string fieldName)
@@ -39,15 +48,6 @@ namespace SchoolBusWeb.Models.Validations
 
         #endregion Constructors
 
-        #region Properties
-
-        public string FieldName
-        {
-            get { return _fieldName; }
-        }
-
-        #endregion Properties
-
         #region Private Methods
 
         private void SetErrorMessage()
@@ -56,5 +56,17 @@ namespace SchoolBusWeb.Models.Validations
         }
 
         #endregion Private Methods
+
+        #region Public Methods
+
+        public override bool IsValid(object value)
+        {
+            var modelProperty = value as ModelPropertyBase;
+            var actualValue = modelProperty != null ? modelProperty.ValueBase : value;
+
+            return base.IsValid(actualValue);
+        }
+
+        #endregion Public Methods
     }
 }

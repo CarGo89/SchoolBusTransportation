@@ -4,7 +4,7 @@
     {
         #region Properties
 
-        public virtual object Value { get; set; }
+        public virtual object ValueBase { get; set; }
 
         public virtual bool IsValid
         {
@@ -14,5 +14,14 @@
         public virtual string ErrorMessage { get; set; }
 
         #endregion Properties
+
+        #region Public Methods
+
+        public override string ToString()
+        {
+            return string.Format("Value: {0}", ValueBase);
+        }
+
+        #endregion Public Methods
     }
 }
