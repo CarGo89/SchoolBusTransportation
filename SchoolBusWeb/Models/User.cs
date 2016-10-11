@@ -1,4 +1,6 @@
 ﻿using System;
+using System.ComponentModel.DataAnnotations;
+using System.Xml.Serialization;
 using SchoolBusWeb.Models.Validations;
 
 namespace SchoolBusWeb.Models
@@ -9,20 +11,32 @@ namespace SchoolBusWeb.Models
 
         [RequiredField("Nombre", AllowEmptyStrings = false)]
         [MaxLengthField(500, "Nombre")]
-        public virtual string FirstName { get; set; }
+        public virtual ModelProperty<string> FirstName { get; set; }
 
         [MaxLengthField(500, "Nombre")]
-        public virtual string MiddleName { get; set; }
+        public virtual ModelProperty<string> MiddleName { get; set; }
 
         [RequiredField("Apellido Paterno", AllowEmptyStrings = false)]
         [MaxLengthField(500, "Apellido Paterno")]
-        public virtual string LastName { get; set; }
+        public virtual ModelProperty<string> LastName { get; set; }
 
         [RequiredField("Apellido Materno", AllowEmptyStrings = false)]
         [MaxLengthField(500, "Apellido Materno")]
-        public virtual string SecondLastName { get; set; }
+        public virtual ModelProperty<string> SecondLastName { get; set; }
 
-        public virtual DateTime? BirthDate { get; set; }
+        [RequiredField("Email", AllowEmptyStrings = false)]
+        [MaxLengthField(500, "Email")]
+        [EmailAddressValidator("Email")]
+        public virtual ModelProperty<string> Email { get; set; }
+
+        [MaxLengthField(500, "Contraseña")]
+        public virtual ModelProperty<string> Password { get; set; }
+
+        [DataType(DataType.Date)]
+        public virtual string BirthDate { get; set; }
+
+        [XmlIgnore]
+        public virtual int UserRoleId { get; set; }
 
         #endregion Properties
     }

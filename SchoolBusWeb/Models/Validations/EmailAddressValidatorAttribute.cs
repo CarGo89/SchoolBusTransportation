@@ -2,7 +2,7 @@
 
 namespace SchoolBusWeb.Models.Validations
 {
-    public class MaxLengthFieldAttribute : MaxLengthAttribute
+    public class EmailAddressValidatorAttribute : ValidationAttribute
     {
         #region Fields
 
@@ -12,12 +12,11 @@ namespace SchoolBusWeb.Models.Validations
 
         #region Constructors
 
-        public MaxLengthFieldAttribute(int length, string fieldName)
-            : base(length)
+        public EmailAddressValidatorAttribute(string fieldName)
         {
             _fieldName = fieldName;
 
-            ErrorMessage = string.Format("{0} excede la longitud de {1} caracteres.", _fieldName, length);
+            ErrorMessage = string.Format("{0} formato inválido.", _fieldName);
         }
 
         #endregion Constructors
@@ -36,8 +35,10 @@ namespace SchoolBusWeb.Models.Validations
         public override bool IsValid(object value)
         {
             var modelProperty = value as ModelPropertyBase;
+            var actualValue = modelProperty != null ? modelProperty.Value : value;
+            var emailAddressValidator = new EmailAddressAttribute();
 
-            return base.IsValid(modelProperty != null ? modelProperty.Value : value);
+            return emailAddressValidator.IsValid(actualValue);
         }
 
         #endregion Public Methods

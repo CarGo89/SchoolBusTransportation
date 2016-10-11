@@ -1,5 +1,7 @@
 ﻿using System.Web.Mvc;
 using System.Web.Routing;
+using AutoMapper;
+using SchoolBusWeb.Models.Mappings;
 
 namespace SchoolBusWeb
 {
@@ -9,6 +11,8 @@ namespace SchoolBusWeb
         {
             AreaRegistration.RegisterAllAreas();
             RouteConfig.RegisterRoutes(RouteTable.Routes);
+
+            Mapper.Initialize(cfg => cfg.AddProfile<ModelMapperProfile>());
         }
     }
 }

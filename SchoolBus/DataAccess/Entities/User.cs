@@ -51,7 +51,7 @@ namespace SchoolBus.DataAccess.Entities
         [Required, Column(TypeName = "VARCHAR"), MaxLength(500)]
         public virtual string Email { get; set; }
 
-        [Required, Column(TypeName = "VARCHAR"), MaxLength(500)]
+        [Column(TypeName = "VARCHAR"), MaxLength(500)]
         public virtual string Password { get; set; }
 
         #endregion Properties

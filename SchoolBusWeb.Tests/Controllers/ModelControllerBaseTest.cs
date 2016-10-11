@@ -18,6 +18,7 @@ namespace SchoolBusWeb.Tests.Controllers
         public void ModelControllerBaseInitTest()
         {
             /*Arrange*/
+            var mockSettingsManager = new Mock<ISettingsManager>(MockBehavior.Strict);
             var mockUserInfo = new Mock<IUserInfo>(MockBehavior.Strict);
             var mockEntityRepository = new Mock<IEntityRepository<TestEntity>>(MockBehavior.Strict);
             var mockLogger = new Mock<ILogger>(MockBehavior.Strict);
@@ -26,7 +27,7 @@ namespace SchoolBusWeb.Tests.Controllers
                 .Setup(repository => repository.Dispose());
 
             /*Act*/
-            using (new ModelController(mockUserInfo.Object, mockEntityRepository.Object, mockLogger.Object))
+            using (new ModelController(mockSettingsManager.Object, mockUserInfo.Object, mockEntityRepository.Object, mockLogger.Object))
             {
             }
 
@@ -44,6 +45,7 @@ namespace SchoolBusWeb.Tests.Controllers
         public void ModelControllerBaseIndexTest()
         {
             /*Arrange*/
+            var mockSettingsManager = new Mock<ISettingsManager>(MockBehavior.Strict);
             var mockUserInfo = new Mock<IUserInfo>(MockBehavior.Strict);
             var mockEntityRepository = new Mock<IEntityRepository<TestEntity>>(MockBehavior.Strict);
             var mockLogger = new Mock<ILogger>(MockBehavior.Strict);
@@ -53,7 +55,7 @@ namespace SchoolBusWeb.Tests.Controllers
                 .Setup(repository => repository.Dispose());
 
             /*Act*/
-            using (var controller = new ModelController(mockUserInfo.Object, mockEntityRepository.Object, mockLogger.Object))
+            using (var controller = new ModelController(mockSettingsManager.Object, mockUserInfo.Object, mockEntityRepository.Object, mockLogger.Object))
             {
                 actualActionResult = controller.Index();
             }
@@ -74,6 +76,7 @@ namespace SchoolBusWeb.Tests.Controllers
         public void ModelControllerBaseGetTest()
         {
             /*Arrange*/
+            var mockSettingsManager = new Mock<ISettingsManager>(MockBehavior.Strict);
             var mockUserInfo = new Mock<IUserInfo>(MockBehavior.Strict);
             var mockEntityRepository = new Mock<IEntityRepository<TestEntity>>(MockBehavior.Strict);
             var mockLogger = new Mock<ILogger>(MockBehavior.Strict);
@@ -89,7 +92,7 @@ namespace SchoolBusWeb.Tests.Controllers
                 .Setup(repository => repository.Dispose());
 
             /*Act*/
-            using (var controller = new ModelController(mockUserInfo.Object, mockEntityRepository.Object, mockLogger.Object))
+            using (var controller = new ModelController(mockSettingsManager.Object, mockUserInfo.Object, mockEntityRepository.Object, mockLogger.Object))
             {
                 actualActionResult = controller.Get();
             }
@@ -112,6 +115,7 @@ namespace SchoolBusWeb.Tests.Controllers
         public void ModelControllerBaseGetByIdTest()
         {
             /*Arrange*/
+            var mockSettingsManager = new Mock<ISettingsManager>(MockBehavior.Strict);
             var mockUserInfo = new Mock<IUserInfo>(MockBehavior.Strict);
             var mockEntityRepository = new Mock<IEntityRepository<TestEntity>>(MockBehavior.Strict);
             var mockLogger = new Mock<ILogger>(MockBehavior.Strict);
@@ -127,7 +131,7 @@ namespace SchoolBusWeb.Tests.Controllers
                 .Setup(repository => repository.Dispose());
 
             /*Act*/
-            using (var controller = new ModelController(mockUserInfo.Object, mockEntityRepository.Object, mockLogger.Object))
+            using (var controller = new ModelController(mockSettingsManager.Object, mockUserInfo.Object, mockEntityRepository.Object, mockLogger.Object))
             {
                 actualActionResult = controller.Get(expectedId);
             }
@@ -150,6 +154,7 @@ namespace SchoolBusWeb.Tests.Controllers
         public void ModelControllerBaseAddTest()
         {
             /*Arrange*/
+            var mockSettingsManager = new Mock<ISettingsManager>(MockBehavior.Strict);
             var mockUserInfo = new Mock<IUserInfo>(MockBehavior.Strict);
             var mockEntityRepository = new Mock<IEntityRepository<TestEntity>>(MockBehavior.Strict);
             var mockLogger = new Mock<ILogger>(MockBehavior.Strict);
@@ -169,7 +174,7 @@ namespace SchoolBusWeb.Tests.Controllers
                 .Setup(repository => repository.Dispose());
 
             /*Act*/
-            using (var controller = new ModelController(mockUserInfo.Object, mockEntityRepository.Object, mockLogger.Object))
+            using (var controller = new ModelController(mockSettingsManager.Object, mockUserInfo.Object, mockEntityRepository.Object, mockLogger.Object))
             {
                 actualActionResult = controller.Add(expectedTestModel);
             }
@@ -194,6 +199,7 @@ namespace SchoolBusWeb.Tests.Controllers
         public void ModelControllerBaseUpdateTest()
         {
             /*Arrange*/
+            var mockSettingsManager = new Mock<ISettingsManager>(MockBehavior.Strict);
             var mockUserInfo = new Mock<IUserInfo>(MockBehavior.Strict);
             var mockEntityRepository = new Mock<IEntityRepository<TestEntity>>(MockBehavior.Strict);
             var mockLogger = new Mock<ILogger>(MockBehavior.Strict);
@@ -213,7 +219,7 @@ namespace SchoolBusWeb.Tests.Controllers
                 .Setup(repository => repository.Dispose());
 
             /*Act*/
-            using (var controller = new ModelController(mockUserInfo.Object, mockEntityRepository.Object, mockLogger.Object))
+            using (var controller = new ModelController(mockSettingsManager.Object, mockUserInfo.Object, mockEntityRepository.Object, mockLogger.Object))
             {
                 actualActionResult = controller.Update(expectedTestModel);
             }
@@ -238,6 +244,7 @@ namespace SchoolBusWeb.Tests.Controllers
         public void ModelControllerBaseDeleteTest()
         {
             /*Arrange*/
+            var mockSettingsManager = new Mock<ISettingsManager>(MockBehavior.Strict);
             var mockUserInfo = new Mock<IUserInfo>(MockBehavior.Strict);
             var mockEntityRepository = new Mock<IEntityRepository<TestEntity>>(MockBehavior.Strict);
             var mockLogger = new Mock<ILogger>(MockBehavior.Strict);
@@ -257,7 +264,7 @@ namespace SchoolBusWeb.Tests.Controllers
                 .Setup(repository => repository.Dispose());
 
             /*Act*/
-            using (var controller = new ModelController(mockUserInfo.Object, mockEntityRepository.Object, mockLogger.Object))
+            using (var controller = new ModelController(mockSettingsManager.Object, mockUserInfo.Object, mockEntityRepository.Object, mockLogger.Object))
             {
                 actualActionResult = controller.Delete(expectedTestModel);
             }

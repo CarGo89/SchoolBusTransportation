@@ -30,7 +30,7 @@
                     autoWidth: true,
                     deferRender: true,
                     sort: true,
-                    order: [[0, "desc"]],
+                    order: [[0, "asc"]],
                     language: scope.dataTableLanguage
                 });
             };
@@ -45,9 +45,26 @@
                         }
                     };
 
-                    if (scope.data.length === 0) {
+                    if (scope.data && scope.data.length === 0) {
                         initDataTable(scope, element);
                     }
+                }
+            };
+        },
+
+        datePicker: function() {
+            return {
+                restrict: "A",
+
+                link: function(scope, element) {
+                    element.datetimepicker({
+                        useCurrent: false,
+                        format: "MM/DD/YYYY"
+                    });
+
+                    element.datetimepicker().on("dp.change", function(e) {
+                        $(e.currentTarget).change();
+                    });
                 }
             };
         }

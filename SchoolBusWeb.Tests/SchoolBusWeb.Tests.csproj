@@ -99,7 +99,7 @@
   <ItemGroup>
     <Compile Include="Controllers\ModelController.cs" />
     <Compile Include="Controllers\ModelControllerBaseTest.cs" />
-    <Compile Include="Models\Mappings\ModelMapperProfile.cs" />
+    <Compile Include="Models\Mappings\TestModelMapperProfile.cs" />
     <Compile Include="Models\TestEntity.cs" />
     <Compile Include="Models\TestModel.cs" />
     <Compile Include="Models\Validations\MaxLengthFieldAttributeTest.cs" />

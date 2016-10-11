@@ -59,13 +59,15 @@ namespace SchoolBus.DataAccess.Repositories
 
         public TEntity Add(TEntity entity, int creatorId)
         {
+            var now = DateTime.Now;
+
             entity.CreatedBy = null;
             entity.CreatedById = creatorId;
-            entity.CreatedAt = DateTime.Now;
+            entity.CreatedAt = now;
 
             entity.UpdatedBy = null;
             entity.UpdatedById = creatorId;
-            entity.UpdatedAt = DateTime.Now;
+            entity.UpdatedAt = now;
 
             entity.DeactivatedBy = null;
             entity.DeactivatedById = null;
@@ -107,13 +109,15 @@ namespace SchoolBus.DataAccess.Repositories
                 return entity;
             }
 
+            var now = DateTime.Now;
+
             entity.DeactivatedBy = null;
             entity.DeactivatedById = deactivatorId;
-            entity.DeactivatedAt = DateTime.Now;
+            entity.DeactivatedAt = now;
 
             entity.UpdatedBy = null;
             entity.UpdatedById = deactivatorId;
-            entity.UpdatedAt = DateTime.Now;
+            entity.UpdatedAt = now;
 
             entity.CreatedBy = null;
             entity.CreatedById = entityToDeactivate.CreatedById;

@@ -3,13 +3,16 @@ using System.Collections.Generic;
 using System.IO;
 using System.Linq;
 using System.Net;
+using System.Reflection;
 using System.Web.Mvc;
 using System.Web.Mvc.Filters;
 using AutoMapper;
+using Dpr.Core.Extensions;
 using Dpr.Core.Logging;
 using SchoolBus.DataAccess.Repositories;
 using SchoolBusWeb.Extensions;
 using SchoolBusWeb.Models;
+using SchoolBusWeb.Models.Mappings;
 using SchoolBusWeb.Utilities;
 
 namespace SchoolBusWeb.Controllers
@@ -20,11 +23,15 @@ namespace SchoolBusWeb.Controllers
     {
         #region Fields
 
+        protected readonly ISettingsManager Settings;
+
         protected readonly IUserInfo UserInfo;
 
         protected readonly IEntityRepository<TEntity> EntityRepository;
 
         protected readonly ILogger Logger;
+
+        protected static readonly IDictionary<string, IEnumerable<PropertyInfo>> PropertiesByModel;
 
         protected string SiteBaseUrl
         {
@@ -39,22 +46,43 @@ namespace SchoolBusWeb.Controllers
             }
         }
 
+        private static readonly Type ModelPropertyType;
+
         #endregion Fields
 
         #region Constructors
 
+        static ModelControllerBase()
+        {
+            ModelPropertyType = typeof(ModelProperty<>);
+
+            PropertiesByModel = new Dictionary<string, IEnumerable<PropertyInfo>>(StringComparer.InvariantCultureIgnoreCase);
+        }
+
         protected ModelControllerBase()
-            : this(new UserInfo(), new EntityRepository<TEntity>(), new Logger(Path.Combine(AppDomain.CurrentDomain.BaseDirectory, @"ShoolBusTransportation.log")))
+            : this(SettingsManager.Instance, new UserInfo(), new EntityRepository<TEntity>(), new Logger(Path.Combine(AppDomain.CurrentDomain.BaseDirectory, @"ShoolBusTransportation.log")))
         {
         }
 
-        protected internal ModelControllerBase(IUserInfo userInfo, IEntityRepository<TEntity> entityRepository, ILogger logger)
+        protected internal ModelControllerBase(ISettingsManager settings, IUserInfo userInfo, IEntityRepository<TEntity> entityRepository, ILogger logger)
         {
+            Settings = settings;
+
             UserInfo = userInfo;
+
+            UserInfo.Id = 1;
 
             EntityRepository = entityRepository;
 
             Logger = logger;
+
+            var modelType = typeof(TModel);
+
+            if (!PropertiesByModel.ContainsKey(modelType.Name))
+            {
+                PropertiesByModel[modelType.Name] = modelType.GetProperties()
+                    .Where(prop => string.Equals(prop.PropertyType.Name, ModelPropertyType.Name));
+            }
         }
 
         #endregion Constructors
@@ -68,17 +96,26 @@ namespace SchoolBusWeb.Controllers
         }
 
         [HttpGet]
-        public virtual ActionResult Get(int? modelId = null)
+        public virtual ActionResult Get(int? id = null)
         {
-            var entities = modelId.HasValue ? EntityRepository.Get(entity => entity.Id == modelId.Value) : EntityRepository.Get();
+            var entities = id.HasValue ? EntityRepository.Get(entity => entity.Id == id.Value) : EntityRepository.Get();
             var models = Mapper.Map<TModel[]>(entities);
 
-            return models.ToJsonResults();
+            return models.ToJsonResult();
         }
 
         [HttpPost]
         public virtual ActionResult Add(TModel model)
         {
+            model.IsValid = ModelState.IsValid;
+
+            if (!model.IsValid)
+            {
+                SetErrorMessages(model);
+
+                return model.ToJsonResult();
+            }
+
             var entity = Mapper.Map<TEntity>(model);
             var addedEntity = EntityRepository.Add(entity, UserInfo.Id);
             var addedModel = Mapper.Map<TModel>(addedEntity);
@@ -89,6 +126,15 @@ namespace SchoolBusWeb.Controllers
         [HttpPut]
         public virtual ActionResult Update(TModel model)
         {
+            model.IsValid = ModelState.IsValid;
+
+            if (!model.IsValid)
+            {
+                SetErrorMessages(model);
+
+                return model.ToJsonResult();
+            }
+
             var entity = Mapper.Map<TEntity>(model);
             var updatedEntity = EntityRepository.Update(entity, UserInfo.Id);
             var updatedModel = Mapper.Map<TModel>(updatedEntity);
@@ -131,6 +177,37 @@ namespace SchoolBusWeb.Controllers
             return ModelState
                .Where(model => model.Value.Errors.Any())
                .SelectMany(model => model.Value.Errors.Select(error => error.ErrorMessage));
+        }
+
+        protected void SetErrorMessages(TModel model)
+        {
+            if (model.IsValid || ModelState.IsNullOrEmpty())
+            {
+                return;
+            }
+
+            var modelProperties = PropertiesByModel[typeof(TModel).Name];
+
+            foreach (var modelProperty in modelProperties)
+            {
+                var modelState = ModelState.TryGetValue(modelProperty.Name);
+                var modelPropertyValue = modelProperty.GetValue(model) ?? Activator.CreateInstance(modelProperty.PropertyType);
+                var actualValue = (ModelPropertyBase)modelPropertyValue;
+
+                actualValue.ErrorMessage = string.Empty;
+
+                if (modelState == null)
+                {
+                    continue;
+                }
+
+                if (!modelState.Errors.IsNullOrEmpty())
+                {
+                    actualValue.ErrorMessage = modelState.Errors.First().ErrorMessage;
+                }
+
+                modelProperty.SetValue(model, modelPropertyValue);
+            }
         }
 
         protected override void Dispose(bool disposing)

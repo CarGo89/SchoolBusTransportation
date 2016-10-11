@@ -14,11 +14,11 @@ namespace SchoolBusWeb.Tests.Controllers
 
         static ModelController()
         {
-            Mapper.Initialize(cfg => cfg.AddProfile<ModelMapperProfile>());
+            Mapper.Initialize(cfg => cfg.AddProfile<TestModelMapperProfile>());
         }
 
-        public ModelController(IUserInfo userInfo, IEntityRepository<TestEntity> entityRepository, ILogger logger)
-            : base(userInfo, entityRepository, logger)
+        public ModelController(ISettingsManager settings, IUserInfo userInfo, IEntityRepository<TestEntity> entityRepository, ILogger logger)
+            : base(settings, userInfo, entityRepository, logger)
         {
         }
 

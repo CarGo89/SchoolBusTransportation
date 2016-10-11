@@ -3,11 +3,13 @@
 
     var schoolBus = angular.module("schoolBus", ["ngAnimate"]);
 
-    schoolBus.directive("responsiveDataTable", window.angularDirectives.responsiveDataTable);
-
     schoolBus.directive("navigationContainer", window.angularDirectives.navigationContainer);
 
-    schoolBus.controller("driverController", ["$scope", function ($scope) {
+    schoolBus.directive("responsiveDataTable", window.angularDirectives.responsiveDataTable);
+
+    schoolBus.directive("datePicker", window.angularDirectives.datePicker);
+
+    schoolBus.controller("driverController", ["$scope", "$http", function ($scope, $http) {
         $scope.dataTableLanguage = {
             search: "Filtrar:",
             searchPlaceholder: "Filtrar Choferes",
@@ -19,28 +21,54 @@
             infoFiltered: "(Choferes filtrados de _MAX_)"
         };
 
-        $scope.data = [
-        {
-            Name: "Carlos",
-            MiddleName: "Alberto",
-            LastName: "Gonzalez",
-            SecondLastName: "Morales",
-            BirthDate: "05/09/1989"
-        }];
+        $scope.drivers = $scope.data = [];
+        $scope.currentDriver = {};
 
-        $scope.drivers = $scope.data;
-        $scope.driverToUpdate = {};
-
-        $scope.edit = function(driver) {
-            $scope.driverToUpdate = driver;
+        $scope.edit = function (driver) {
+            $scope.currentDriver = $.extend(true, {}, driver);;
 
             $scope.setEditMode();
         };
 
         $scope.cancelEdit = function () {
-            $scope.driverToUpdate = {};
+            $scope.currentDriver = {};
 
             $scope.setReadMode();
         };
+
+        $scope.get = function () {
+            $http.get("Chofer/Get").then(
+                function (response) {
+                    $scope.drivers = $scope.data = response.data;
+                }, function (response) {
+                    response;
+                });
+        };
+
+        $scope.add = function () {
+            $http.post("Chofer/Add", $scope.currentDriver).then(
+                function (response) {
+                    $scope.currentDriver = response.data;
+
+                    if (response.data.IsValid === true) {
+                        $scope.cancelEdit();
+                    }
+                }, function (response) {
+                    response;
+                });
+        };
+
+        $scope.update = function () {
+            $http.post("Chofer/Update", $scope.currentDriver).then(
+                function (response) {
+                    $scope.drivers = $scope.data = response.data;
+
+                    $scope.cancelEdit();
+                }, function (response) {
+                    response;
+                });
+        };
+
+        $scope.get();
     }]);
 })(window.angular);

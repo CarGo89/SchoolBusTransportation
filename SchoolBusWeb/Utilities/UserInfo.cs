@@ -1,6 +1,6 @@
 ﻿namespace SchoolBusWeb.Utilities
 {
-    public class UserInfo : IUserInfo
+    public sealed class UserInfo : IUserInfo
     {
         #region Properties
 

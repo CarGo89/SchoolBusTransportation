@@ -1,6 +1,4 @@
-﻿using System.Collections.Generic;
-using System.Web.Mvc;
-using SchoolBusWeb.Models;
+﻿using System.Web.Mvc;
 
 namespace SchoolBusWeb.Extensions
 {
@@ -8,7 +6,7 @@ namespace SchoolBusWeb.Extensions
     {
         #region Private Methods
 
-        private static JsonResult Serialize(object target)
+        public static JsonResult ToJsonResult(this object target)
         {
             return new JsonResult
             {
@@ -16,22 +14,6 @@ namespace SchoolBusWeb.Extensions
                 JsonRequestBehavior = JsonRequestBehavior.AllowGet,
                 MaxJsonLength = int.MaxValue
             };
-        }
-
-        #endregion Private Methods
-
-        #region Extension Methods
-
-        public static JsonResult ToJsonResult<TModel>(this TModel model)
-            where TModel : ModelBase
-        {
-            return Serialize(model);
-        }
-
-        public static JsonResult ToJsonResults<TModels>(this TModels models)
-            where TModels : IEnumerable<ModelBase>
-        {
-            return Serialize(models);
         }
 
         #endregion Extension Methods
