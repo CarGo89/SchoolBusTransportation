@@ -3,6 +3,8 @@
 
     var schoolBus = angular.module("schoolBus", ["ngAnimate"]);
 
+    schoolBus.directive("spinner", window.angularDirectives.spinner);
+
     schoolBus.directive("navigationContainer", window.angularDirectives.navigationContainer);
 
     schoolBus.directive("responsiveTableRendered", window.angularDirectives.responsiveTableRendered);
@@ -10,6 +12,13 @@
     schoolBus.directive("datePicker", window.angularDirectives.datePicker);
 
     schoolBus.controller("driverController", ["$scope", "$http", function ($scope, $http) {
+        var initDriver = function () {
+            return {
+                IsValid: true
+            };
+        };
+        var validationMessage = "Existen errores en la información enviada.";
+
         $scope.dataTableLanguage = {
             search: "Filtrar:",
             searchPlaceholder: "Filtrar Choferes",
@@ -22,18 +31,33 @@
         };
 
         $scope.drivers = [];
-        $scope.currentDriver = {
-            IsValid: true
+        $scope.currentDriver = initDriver();
+        $scope.renderTable = null;
+        $scope.pageSubTitle = "";
+        $scope.errorMessage = "";
+
+        $scope.setSpinner = function (active) {
+            $scope.$parent.spinnerActive = active;
+        };
+
+        $scope.setAddMode = function () {
+            $scope.pageSubTitle = "Nuevo";
+
+            $scope.setEditMode();
         };
 
         $scope.edit = function (driver) {
+            $scope.pageSubTitle = "Edición";
+
             $scope.currentDriver = $.extend(true, {}, driver);
 
             $scope.setEditMode();
         };
 
         $scope.cancelEdit = function () {
-            $scope.currentDriver = {};
+            $scope.pageSubTitle = "";
+
+            $scope.currentDriver = initDriver();
 
             $scope.setReadMode();
         };
@@ -41,17 +65,27 @@
         $scope.get = function () {
             var getUrl = ("Chofer/Get?cache=").concat(new Date().valueOf());
 
+            $scope.setSpinner(true);
+
             $scope.drivers = [];
 
             $http.get(getUrl).then(
                 function (response) {
                     $scope.drivers = response.data;
-                }, function (response) {
-                    response;
+
+                    $scope.renderTable = ($scope.drivers && $scope.drivers.length > 0);
+
+                    $scope.setSpinner(false);
+                }, function () {
+                    $scope.setSpinner(false);
+
+                    $scope.errorMessage = "Ocurrió un error en la consulta.";
                 });
         };
 
         $scope.add = function () {
+            $scope.setSpinner(true);
+
             $http.post("Chofer/Add", $scope.currentDriver).then(
                 function (response) {
                     $scope.currentDriver = response.data;
@@ -61,12 +95,21 @@
 
                         $scope.get();
                     }
-                }, function (response) {
-                    response;
+                    else {
+                        $scope.errorMessage = validationMessage;
+                    }
+
+                    $scope.setSpinner(false);
+                }, function () {
+                    $scope.setSpinner(false);
+
+                    $scope.errorMessage = "Ocurrió un error al guardar.";
                 });
         };
 
         $scope.update = function () {
+            $scope.setSpinner(true);
+
             $http.post("Chofer/Update", $scope.currentDriver).then(
                 function (response) {
                     $scope.currentDriver = response.data;
@@ -76,8 +119,15 @@
 
                         $scope.get();
                     }
-                }, function (response) {
-                    response;
+                    else {
+                        $scope.errorMessage = validationMessage;
+                    }
+
+                    $scope.setSpinner(false);
+                }, function () {
+                    $scope.setSpinner(false);
+
+                    $scope.errorMessage = "Ocurrió un error al actualizar.";
                 });
         };
 

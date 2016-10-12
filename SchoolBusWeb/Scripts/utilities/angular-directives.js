@@ -6,6 +6,16 @@
     }]);
 
     window.angularDirectives = {
+        spinner: function () {
+            return {
+                restrict: "A",
+
+                link: function (scope) {
+                    scope.spinnerActive = true;
+                }
+            };
+        },
+
         navigationContainer: function () {
             return {
                 restrict: "A",

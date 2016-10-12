@@ -7,6 +7,27 @@
     display: initial;
 }
 
+#loadingPanel {
+    display: none !important;
+    opacity: 0.8;
+    position: absolute;
+    height: 100%;
+    width: 100%;
+    z-index: 100000;
+    background-color: #F7F7F9;
+    color: #00599B;
+    text-align: center;
+}
+
+    #loadingPanel.active {
+        display: table !important;
+    }
+
+    #loadingPanel div {
+        display: table-cell;
+        vertical-align: middle;
+    }
+
 tr.text-center th, tr.text-center td {
     text-align: center;
 }
