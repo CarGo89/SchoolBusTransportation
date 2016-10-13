@@ -151,6 +151,7 @@
     <Content Include="Scripts\angular-touch.min.js" />
     <Content Include="Scripts\angular.js" />
     <Content Include="Scripts\angular.min.js" />
+    <Content Include="Scripts\bootstrap-confirmation.js" />
     <Content Include="Scripts\bootstrap-datetimepicker.js" />
     <Content Include="Scripts\bootstrap-datetimepicker.min.js" />
     <Content Include="Scripts\controllers\driver-controller.js" />
@@ -1039,7 +1040,7 @@
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
-    <Compile Include="ISettingsManager.cs" />
+    <Compile Include="Utilities\ISettingsManager.cs" />
     <Compile Include="Models\Address.cs" />
     <Compile Include="Models\Bus.cs" />
     <Compile Include="Models\Driver.cs" />

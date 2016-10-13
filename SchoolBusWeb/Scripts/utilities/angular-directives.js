@@ -68,6 +68,28 @@
                     });
                 }
             };
+        },
+
+        deleteConfirmation: function () {
+            return {
+                restrict: "A",
+
+                link: function (scope, element) {
+                    element.confirmation({
+                        btnOkLabel: "",
+                        btnCancelLabel: "",
+                        title: "¿Estás seguro?",
+                        placement: "top",
+                        trigger: "click",
+
+                        onConfirm: function () {
+                            if (typeof scope.entity.delete === "function") {
+                                scope.entity.delete.call(this);
+                            }
+                        }
+                    });
+                }
+            };
         }
     };
 })();

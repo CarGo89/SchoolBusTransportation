@@ -11,6 +11,8 @@
 
     schoolBus.directive("datePicker", window.angularDirectives.datePicker);
 
+    schoolBus.directive("deleteConfirmation", window.angularDirectives.deleteConfirmation);
+
     schoolBus.controller("driverController", ["$scope", "$http", function ($scope, $http) {
         var initDriver = function () {
             return {
@@ -44,6 +46,14 @@
             $scope.pageSubTitle = "Nuevo";
 
             $scope.setEditMode();
+        };
+
+        $scope.initDriver = function(driver) {
+            driver.delete = function() {
+                $scope.currentDriver = driver;
+
+                $scope.delete();
+            };
         };
 
         $scope.edit = function (driver) {
@@ -128,6 +138,23 @@
                     $scope.setSpinner(false);
 
                     $scope.errorMessage = "Ocurrió un error al actualizar.";
+                });
+        };
+
+        $scope.delete = function () {
+            $scope.setSpinner(true);
+
+            $http.post("Chofer/Delete", $scope.currentDriver).then(
+                function () {
+                    $scope.currentDriver = {};
+
+                    $scope.setSpinner(false);
+                }, function () {
+                    $scope.currentDriver = {};
+
+                    $scope.setSpinner(false);
+
+                    $scope.errorMessage = "Ocurrió un error al eliminar.";
                 });
         };
 

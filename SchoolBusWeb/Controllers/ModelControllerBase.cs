@@ -97,7 +97,7 @@ namespace SchoolBusWeb.Controllers
         [HttpGet]
         public virtual ActionResult Get(int? id = null)
         {
-            var entities = id.HasValue ? EntityRepository.Get(entity => entity.Id == id.Value) : EntityRepository.Get();
+            var entities = id.HasValue ? EntityRepository.Get(entity => entity.Id == id.Value) : EntityRepository.Get(entity => !entity.DeactivatedById.HasValue);
             var models = Mapper.Map<TModel[]>(entities);
 
             return models.ToJsonResult();

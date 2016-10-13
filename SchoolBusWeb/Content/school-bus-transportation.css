@@ -32,21 +32,42 @@ tr.text-center th, tr.text-center td {
     text-align: center;
 }
 
-.glyphicon-pencil, .glyphicon-remove {
-    cursor: pointer;
+td.td-action {
+    width: 3%;
+}
+
+    td.td-action span {
+        cursor: pointer;
+    }
+
+.popover-content {
+    text-align: center;
+    -moz-min-width: 130px;
+    -ms-min-width: 130px;
+    -o-min-width: 130px;
+    -webkit-min-width: 130px;
+    min-width: 130px;
 }
 
 .ng-leave.ng-leave-active, .ng-enter {
     -ms-opacity: 0;
     opacity: 0;
-    -webkit-transition: visibility 0s, opacity 0.5s linear;
-    -moz-transition: visibility 0s, opacity 0.5s linear;
-    -ms-transition: visibility 0s, opacity 0.5s linear;
-    -o-transition: visibility 0s, opacity 0.5s linear;
-    transition: visibility 0s, opacity 0.5s linear;
+    -webkit-transition: visibility 0, opacity 0.5s linear;
+    -moz-transition: visibility 0, opacity 0.5s linear;
+    -ms-transition: visibility 0, opacity 0.5s linear;
+    -o-transition: visibility 0, opacity 0.5s linear;
+    transition: visibility 0, opacity 0.5s linear;
 }
 
     .ng-leave, .ng-enter.ng-enter-active {
         -ms-opacity: 1;
         opacity: 1;
+    }
+
+.table-responsive {
+    overflow-x: hidden;
+}
+
+    .table-responsive:hover {
+        overflow-x: auto;
     }

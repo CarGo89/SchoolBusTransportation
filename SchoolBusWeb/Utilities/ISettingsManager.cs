@@ -1,4 +1,4 @@
-﻿namespace SchoolBusWeb
+﻿namespace SchoolBusWeb.Utilities
 {
     public interface ISettingsManager
     {
