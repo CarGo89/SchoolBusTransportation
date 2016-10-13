@@ -13,6 +13,8 @@
 
     schoolBus.directive("deleteConfirmation", window.angularDirectives.deleteConfirmation);
 
+    schoolBus.directive("errorTooltip", window.angularDirectives.errorTooltip);
+
     schoolBus.controller("driverController", ["$scope", "$http", function ($scope, $http) {
         var initDriver = function () {
             return {

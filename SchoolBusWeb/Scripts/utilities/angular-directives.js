@@ -90,6 +90,30 @@
                     });
                 }
             };
+        },
+
+        errorTooltip: function () {
+            return {
+                restrict: "A",
+
+                scope: {
+                    modelProperty: "=modelProperty"
+                },
+
+                link: function (scope, element) {
+                    element.tooltip({
+                        title: function () {
+                            return scope.modelProperty && scope.modelProperty.IsValid !== true ? scope.modelProperty.ErrorMessage : "";
+                        }
+                    });
+
+                    scope.$watch("modelProperty.IsValid", function (oldValue, newValue) {
+                        if (newValue === false) {
+                            element.tooltip("hide");
+                        }
+                    });
+                }
+            };
         }
     };
 })();
