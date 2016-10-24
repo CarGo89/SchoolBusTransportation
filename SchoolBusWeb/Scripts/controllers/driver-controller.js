@@ -16,12 +16,12 @@
     schoolBus.directive("errorTooltip", window.angularDirectives.errorTooltip);
 
     schoolBus.controller("driverController", ["$scope", "$http", function ($scope, $http) {
-        var initDriver = function () {
+        var validationMessage = "Existen errores en la información enviada.";
+        var createDriver = function () {
             return {
                 IsValid: true
             };
         };
-        var validationMessage = "Existen errores en la información enviada.";
 
         $scope.dataTableLanguage = {
             search: "Filtrar:",
@@ -35,7 +35,7 @@
         };
 
         $scope.drivers = [];
-        $scope.currentDriver = initDriver();
+        $scope.currentDriver = createDriver();
         $scope.renderTable = null;
         $scope.pageSubTitle = "";
         $scope.errorMessage = "";
@@ -50,8 +50,8 @@
             $scope.setEditMode();
         };
 
-        $scope.initDriver = function(driver) {
-            driver.delete = function() {
+        $scope.initDriver = function (driver) {
+            driver.delete = function () {
                 $scope.currentDriver = driver;
 
                 $scope.delete();
@@ -69,7 +69,7 @@
         $scope.cancelEdit = function () {
             $scope.pageSubTitle = "";
 
-            $scope.currentDriver = initDriver();
+            $scope.currentDriver = createDriver();
 
             $scope.setReadMode();
         };
@@ -86,12 +86,10 @@
                     $scope.drivers = response.data;
 
                     $scope.renderTable = ($scope.drivers && $scope.drivers.length > 0);
-
-                    $scope.setSpinner(false);
                 }, function () {
-                    $scope.setSpinner(false);
-
                     $scope.errorMessage = "Ocurrió un error en la consulta.";
+                }).finally(function () {
+                    $scope.setSpinner(false);
                 });
         };
 
@@ -110,12 +108,10 @@
                     else {
                         $scope.errorMessage = validationMessage;
                     }
-
-                    $scope.setSpinner(false);
                 }, function () {
-                    $scope.setSpinner(false);
-
                     $scope.errorMessage = "Ocurrió un error al guardar.";
+                }).finally(function () {
+                    $scope.setSpinner(false);
                 });
         };
 
@@ -134,12 +130,10 @@
                     else {
                         $scope.errorMessage = validationMessage;
                     }
-
-                    $scope.setSpinner(false);
                 }, function () {
-                    $scope.setSpinner(false);
-
                     $scope.errorMessage = "Ocurrió un error al actualizar.";
+                }).finally(function () {
+                    $scope.setSpinner(false);
                 });
         };
 
@@ -148,15 +142,13 @@
 
             $http.post("Chofer/Delete", $scope.currentDriver).then(
                 function () {
-                    $scope.currentDriver = {};
-
-                    $scope.setSpinner(false);
+                    $scope.get();
                 }, function () {
-                    $scope.currentDriver = {};
+                    $scope.errorMessage = "Ocurrió un error al eliminar.";
+                }).finally(function () {
+                    $scope.currentDriver = createDriver();
 
                     $scope.setSpinner(false);
-
-                    $scope.errorMessage = "Ocurrió un error al eliminar.";
                 });
         };
 

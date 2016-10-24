@@ -60,7 +60,8 @@
                 link: function (scope, element) {
                     element.datetimepicker({
                         useCurrent: false,
-                        format: "MM/DD/YYYY"
+                        format: "MM/DD/YYYY",
+                        maxDate: new Date()
                     });
 
                     element.datetimepicker().on("dp.change", function (e) {
