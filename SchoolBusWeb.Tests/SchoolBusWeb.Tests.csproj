@@ -99,6 +99,8 @@
   <ItemGroup>
     <Compile Include="Controllers\ModelController.cs" />
     <Compile Include="Controllers\ModelControllerBaseTest.cs" />
+    <Compile Include="Controllers\DriverControllerTest.cs" />
+    <Compile Include="Controllers\TutorControllerTest.cs" />
     <Compile Include="Models\Mappings\TestModelMapperProfile.cs" />
     <Compile Include="Models\TestEntity.cs" />
     <Compile Include="Models\TestModel.cs" />

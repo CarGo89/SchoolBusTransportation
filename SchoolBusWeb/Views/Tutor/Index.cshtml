@@ -1,7 +1,150 @@
 ﻿@{
     ViewBag.Title = "Tutor";
-    
+
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
 
-<h2>Ciclo Escolar</h2>
+<div ng-controller="tutorController" navigation-container ng-switch on="pageMode">
+    <div class="page-header">
+        <h1>Tutor <small ng-bind="pageSubTitle"></small></h1>
+    </div>
+
+    <div ng-switch-when="read">
+        <div class="row">
+            <div class="text-center">
+                <button type="button" class="btn btn-success" ng-click="setAddMode()">Agregar</button>
+            </div>
+        </div>
+        <div class="row">&nbsp;</div>
+        <div class="row">
+            <div class="col-sm-12 col-md-12 col-lg-12">
+                <div class="">
+                    <table width="100%" class="table table-striped table-bordered table-condensed table-hover dt-responsive" ng-switch on="renderTable">
+                        <thead>
+                            <tr class="text-center">
+                                <th data-priority="1">Email</th>
+                                <th data-priority="2">Nombre</th>
+                                <th>Segundo Nombre</th>
+                                <th>Apellido Paterno</th>
+                                <th>Apellido Materno</th>
+                                <th>Fecha Nacimiento</th>
+                                <th colspan="2" data-priority="3">&nbsp;</th>
+                            </tr>
+                        </thead>
+
+                        <tbody ng-switch-when="false" ng-init="$last = true" responsive-table-rendered></tbody>
+
+                        <tbody ng-switch-when="true">
+                            <tr ng-repeat="entity in tutors" ng-init="initTutor(entity)" responsive-table-rendered>
+                                <td>
+                                    <span ng-bind="entity.Email.Value"></span>
+                                </td>
+                                <td>
+                                    <span ng-bind="entity.FirstName.Value"></span>
+                                </td>
+                                <td>
+                                    <span ng-bind="entity.MiddleName.Value"></span>
+                                </td>
+                                <td>
+                                    <span ng-bind="entity.LastName.Value"></span>
+                                </td>
+                                <td>
+                                    <span ng-bind="entity.SecondLastName.Value"></span>
+                                </td>
+                                <td class="text-center">
+                                    <span ng-bind="entity.BirthDate"></span>
+                                </td>
+                                <td class="td-action text-center">
+                                    <span class="text-primary" title="Editar" ng-click="edit(entity)">
+                                        <i class="glyphicon glyphicon-pencil"></i>
+                                    </span>
+                                </td>
+                                <td class="td-action text-center">
+                                    <span class="text-danger" delete-confirmation>
+                                        <i class="glyphicon glyphicon-trash"></i>
+                                    </span>
+                                </td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="row" ng-switch-when="edit">
+        <div class="col-sm-offset-2 col-md-offset-2 col-lg-offset-2 col-sm-8 col-md-8 col-lg-8">
+            <div class="text-center" role="alert" ng-class="{'alert alert-danger': currentTutor.IsValid !== true}" ng-show="currentTutor.IsValid !== true" ng-bing="errorMessage">
+                Existen errores en la información enviada.
+            </div>
+
+            <form class="form-horizontal">
+                <div class="form-group has-feedback" ng-class="{'has-error': currentTutor.Email.IsValid === false}">
+                    <label for="Email" class="control-label col-sm-3 col-md-3 col-lg-3">Email:</label>
+                    <div class="col-sm-5 col-md-5 col-lg-5">
+                        <input id="Email" type="text" class="form-control" placeholder="Email" ng-model="currentTutor.Email.Value" ng-change="currentTutor.Email.IsValid = true" error-tooltip model-property="currentTutor.Email" />
+                        <span class="glyphicon glyphicon-warning-sign form-control-feedback" aria-hidden="true" ng-show="currentTutor.Email.IsValid === false"></span>
+                    </div>
+                </div>
+
+                <div class="form-group has-feedback" ng-class="{'has-error': currentTutor.FirstName.IsValid === false}">
+                    <label for="FirstName" class="control-label col-sm-3 col-md-3 col-lg-3">Nombre:</label>
+                    <div class="col-sm-5 col-md-5 col-lg-5">
+                        <input id="FirstName" type="text" class="form-control" placeholder="Nombre" ng-model="currentTutor.FirstName.Value" ng-change="currentTutor.FirstName.IsValid = true" error-tooltip model-property="currentTutor.FirstName" />
+                        <span class="glyphicon glyphicon-warning-sign form-control-feedback" aria-hidden="true" ng-show="currentTutor.FirstName.IsValid === false"></span>
+                    </div>
+                </div>
+
+                <div class="form-group has-feedback" ng-class="{'has-error': currentTutor.MiddleName.IsValid === false}">
+                    <label for="MiddleName" class="control-label col-sm-3 col-md-3 col-lg-3">Segundo Nombre:</label>
+                    <div class="col-sm-5 col-md-5 col-lg-5">
+                        <input id="MiddleName" type="text" class="form-control" placeholder="Segundo Nombre" ng-model="currentTutor.MiddleName.Value" ng-change="currentTutor.MiddleName.IsValid = true" error-tooltip model-property="currentTutor.MiddleName" />
+                        <span class="glyphicon glyphicon-warning-sign form-control-feedback" aria-hidden="true" ng-show="currentTutor.MiddleName.IsValid === false"></span>
+                    </div>
+                </div>
+
+                <div class="form-group has-feedback" ng-class="{'has-error': currentTutor.LastName.IsValid === false}">
+                    <label for="LastName" class="control-label col-sm-3 col-md-3 col-lg-3">Apellido Paterno:</label>
+                    <div class="col-sm-5 col-md-5 col-lg-5">
+                        <input id="LastName" type="text" class="form-control" placeholder="Apellido Paterno" ng-model="currentTutor.LastName.Value" ng-change="currentTutor.LastName.IsValid = true" error-tooltip model-property="currentTutor.LastName" />
+                        <span class="glyphicon glyphicon-warning-sign form-control-feedback" aria-hidden="true" ng-show="currentTutor.LastName.IsValid === false"></span>
+                    </div>
+                </div>
+
+                <div class="form-group has-feedback" ng-class="{'has-error': currentTutor.SecondLastName.IsValid === false}">
+                    <label for="SecondLastName" class="control-label col-sm-3 col-md-3 col-lg-3">Apellido Materno:</label>
+                    <div class="col-sm-5 col-md-5 col-lg-5">
+                        <input id="SecondLastName" type="text" class="form-control" placeholder="Apellido Materno" ng-model="currentTutor.SecondLastName.Value" ng-change="currentTutor.SecondLastName.IsValid = true" error-tooltip model-property="currentTutor.SecondLastName" />
+                        <span class="glyphicon glyphicon-warning-sign form-control-feedback" aria-hidden="true" ng-show="currentTutor.SecondLastName.IsValid === false"></span>
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <label for="BirthDate" class="control-label col-sm-3 col-md-3 col-lg-3">Fecha Nacimiento:</label>
+                    <div class="col-sm-4 col-md-4 col-lg-4">
+                        <div class="input-group">
+                            <input id="BirthDate" type="text" class="form-control" placeholder="Fecha Nacimiento" onkeydown="return false" date-picker ng-model="currentTutor.BirthDate" />
+                            <span class="input-group-addon">
+                                <i class="glyphicon glyphicon-calendar"></i>
+                            </span>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <div class="col-sm-offset-3 col-md-offset-3 col-lg-offset-3 col-sm-4 col-md-4 col-lg-4" ng-switch on="currentTutor.Id > 0">
+                        <button type="button" class="btn btn-success" ng-click="add()" ng-switch-default>Guardar</button>
+                        <button type="button" class="btn btn-primary" ng-click="update()" ng-switch-when="true">Actualizar</button>
+                        <button type="button" class="btn btn-link" ng-click="cancelEdit()">Cancelar</button>
+                    </div>
+                </div>
+            </form>
+        </div>
+    </div>
+
+</div>
+
+@section Scripts
+{
+    @Scripts.Render("~/Scripts/controllers/tutor-controller.js")
+}

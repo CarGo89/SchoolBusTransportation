@@ -69,7 +69,7 @@ namespace SchoolBusWeb.Controllers
 
             UserInfo = userInfo;
 
-            UserInfo.Id = 1;
+            //UserInfo.Id = 1;
 
             EntityRepository = entityRepository;
 
@@ -144,6 +144,15 @@ namespace SchoolBusWeb.Controllers
         [HttpPost]
         public virtual ActionResult Delete(TModel model)
         {
+            model.IsValid = ModelState.IsValid;
+
+            if (!model.IsValid)
+            {
+                SetErrorMessages(model);
+
+                return model.ToJsonResult();
+            }
+
             var entity = Mapper.Map<TEntity>(model);
 
             EntityRepository.Deactivate(entity, UserInfo.Id);

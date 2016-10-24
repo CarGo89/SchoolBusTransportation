@@ -85,7 +85,7 @@ namespace SchoolBusWeb.Tests.Controllers
             ActionResult actualActionResult;
 
             mockEntityRepository
-                .Setup(repository => repository.Get(null))
+                .Setup(repository => repository.Get(It.IsNotNull<Expression<Func<TestEntity, bool>>>()))
                 .Returns(expectedTestEntities);
 
             mockEntityRepository
@@ -102,7 +102,7 @@ namespace SchoolBusWeb.Tests.Controllers
 
             mockEntityRepository.VerifyAll();
             mockEntityRepository
-                .Verify(repository => repository.Get(null), Times.Once);
+                .Verify(repository => repository.Get(It.IsNotNull<Expression<Func<TestEntity, bool>>>()), Times.Once);
             mockEntityRepository
                 .Verify(repository => repository.Dispose(), Times.Once);
 
