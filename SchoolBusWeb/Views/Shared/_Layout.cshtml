@@ -41,25 +41,25 @@
             </div>
             <div id="navbar" class="navbar-collapse collapse">
                 <ul class="nav navbar-nav">
-                    <li class="active">
+                    <li ng-class="{'active': selectedNavbar === '' || selectedNavbar === null || selectedNavbar === undefined}">
                         @Html.ActionLink("Inicio", "Index", "Home", null, new { @class = "set-loading-panel" })
                     </li>
-                    <li>
+                    <li ng-class="{'active': selectedNavbar == 'Driver'}">
                         @Html.ActionLink("Chofer", "Index", "Chofer", null, new { @class = "set-loading-panel" })
                     </li>
-                    <li>
+                    <li ng-class="{'active': selectedNavbar === 'Bus'}">
                         @Html.ActionLink("Camión", "Index", "Camion", null, new { @class = "set-loading-panel" })
                     </li>
-                    <li>
+                    <li ng-class="{'active': selectedNavbar === 'Student'}">
                         @Html.ActionLink("Alumno", "Index", "Alumno", null, new { @class = "set-loading-panel" })
                     </li>
-                    <li>
+                    <li ng-class="{'active': selectedNavbar === 'Tutor'}">
                         @Html.ActionLink("Tutor", "Index", "Tutor", null, new { @class = "set-loading-panel" })
                     </li>
-                    <li>
+                    <li ng-class="{'active': selectedNavbar === 'RelationshipTerm'}">
                         @Html.ActionLink("Parentezco", "Index", "Parentezco", null, new { @class = "set-loading-panel" })
                     </li>
-                    <li>
+                    <li ng-class="{'active': selectedNavbar === 'Adress'}">
                         @Html.ActionLink("Domicilio", "Index", "Domicilio", null, new { @class = "set-loading-panel" })
                     </li>
                 </ul>

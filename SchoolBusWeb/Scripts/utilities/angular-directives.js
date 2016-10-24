@@ -40,14 +40,16 @@
 
                 link: function (scope, element) {
                     if (scope.$last === true) {
-                        element.parents("table:first").dataTable({
-                            destroy: true,
-                            responsive: true,
-                            autoWidth: true,
-                            sort: true,
-                            order: [[0, "asc"]],
-                            language: scope.dataTableLanguage
-                        });
+                        setTimeout(function () {
+                            element.parents("table:first").dataTable({
+                                destroy: true,
+                                responsive: true,
+                                autoWidth: true,
+                                sort: true,
+                                order: [[0, "asc"]],
+                                language: scope.dataTableLanguage
+                            });
+                        }, 10);
                     }
                 }
             };

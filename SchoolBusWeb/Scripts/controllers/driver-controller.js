@@ -23,6 +23,8 @@
             };
         };
 
+        $scope.$parent.selectedNavbar = "Driver";
+
         $scope.dataTableLanguage = {
             search: "Filtrar:",
             searchPlaceholder: "Filtrar Choferes",
@@ -140,9 +142,13 @@
         $scope.delete = function () {
             $scope.setSpinner(true);
 
+            $scope.pageMode = "delete";
+
             $http.post("Chofer/Delete", $scope.currentDriver).then(
                 function () {
                     $scope.get();
+
+                    $scope.cancelEdit();
                 }, function () {
                     $scope.errorMessage = "Ocurrió un error al eliminar.";
                 }).finally(function () {

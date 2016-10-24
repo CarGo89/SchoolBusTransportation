@@ -4,7 +4,7 @@
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
 
-<div ng-controller="driverController" navigation-container ng-switch on="pageMode">
+<div ng-controller="driverController"  navigation-container ng-switch on="pageMode">
     <div class="page-header">
         <h1>Chofer <small ng-bind="pageSubTitle"></small></h1>
     </div>
@@ -79,43 +79,43 @@
             </div>
 
             <form class="form-horizontal">
-                <div class="form-group" ng-class="{'has-error has-feedback': currentDriver.Email.IsValid == false}">
+                <div class="form-group has-feedback" ng-class="{'has-error': currentDriver.Email.IsValid === false}">
                     <label for="Email" class="control-label col-sm-3 col-md-3 col-lg-3">Email:</label>
                     <div class="col-sm-5 col-md-5 col-lg-5">
                         <input id="Email" type="text" class="form-control" placeholder="Email" ng-model="currentDriver.Email.Value" ng-change="currentDriver.Email.IsValid = true" error-tooltip model-property="currentDriver.Email" />
-                        <span class="glyphicon glyphicon-warning-sign form-control-feedback" aria-hidden="true" ng-show="currentDriver.Email.IsValid == false"></span>
+                        <span class="glyphicon glyphicon-warning-sign form-control-feedback" aria-hidden="true" ng-show="currentDriver.Email.IsValid === false"></span>
                     </div>
                 </div>
 
-                <div class="form-group" ng-class="{'has-error has-feedback': currentDriver.FirstName.IsValid == false}">
+                <div class="form-group has-feedback" ng-class="{'has-error': currentDriver.FirstName.IsValid === false}">
                     <label for="FirstName" class="control-label col-sm-3 col-md-3 col-lg-3">Nombre:</label>
                     <div class="col-sm-5 col-md-5 col-lg-5">
                         <input id="FirstName" type="text" class="form-control" placeholder="Nombre" ng-model="currentDriver.FirstName.Value" ng-change="currentDriver.FirstName.IsValid = true" error-tooltip model-property="currentDriver.FirstName" />
-                        <span class="glyphicon glyphicon-warning-sign form-control-feedback" aria-hidden="true" ng-show="currentDriver.FirstName.IsValid == false"></span>
+                        <span class="glyphicon glyphicon-warning-sign form-control-feedback" aria-hidden="true" ng-show="currentDriver.FirstName.IsValid === false"></span>
                     </div>
                 </div>
 
-                <div class="form-group" ng-class="{'has-error has-feedback': currentDriver.MiddleName.IsValid == false}">
+                <div class="form-group has-feedback" ng-class="{'has-error': currentDriver.MiddleName.IsValid === false}">
                     <label for="MiddleName" class="control-label col-sm-3 col-md-3 col-lg-3">Segundo Nombre:</label>
                     <div class="col-sm-5 col-md-5 col-lg-5">
                         <input id="MiddleName" type="text" class="form-control" placeholder="Segundo Nombre" ng-model="currentDriver.MiddleName.Value" ng-change="currentDriver.MiddleName.IsValid = true" error-tooltip model-property="currentDriver.MiddleName" />
-                        <span class="glyphicon glyphicon-warning-sign form-control-feedback" aria-hidden="true" ng-show="currentDriver.MiddleName.IsValid == false"></span>
+                        <span class="glyphicon glyphicon-warning-sign form-control-feedback" aria-hidden="true" ng-show="currentDriver.MiddleName.IsValid === false"></span>
                     </div>
                 </div>
 
-                <div class="form-group" ng-class="{'has-error has-feedback': currentDriver.LastName.IsValid == false}">
+                <div class="form-group has-feedback" ng-class="{'has-error': currentDriver.LastName.IsValid === false}">
                     <label for="LastName" class="control-label col-sm-3 col-md-3 col-lg-3">Apellido Paterno:</label>
                     <div class="col-sm-5 col-md-5 col-lg-5">
                         <input id="LastName" type="text" class="form-control" placeholder="Apellido Paterno" ng-model="currentDriver.LastName.Value" ng-change="currentDriver.LastName.IsValid = true" error-tooltip model-property="currentDriver.LastName" />
-                        <span class="glyphicon glyphicon-warning-sign form-control-feedback" aria-hidden="true" ng-show="currentDriver.LastName.IsValid == false"></span>
+                        <span class="glyphicon glyphicon-warning-sign form-control-feedback" aria-hidden="true" ng-show="currentDriver.LastName.IsValid === false"></span>
                     </div>
                 </div>
 
-                <div class="form-group" ng-class="{'has-error has-feedback': currentDriver.SecondLastName.IsValid == false}">
+                <div class="form-group has-feedback" ng-class="{'has-error': currentDriver.SecondLastName.IsValid === false}">
                     <label for="SecondLastName" class="control-label col-sm-3 col-md-3 col-lg-3">Apellido Materno:</label>
                     <div class="col-sm-5 col-md-5 col-lg-5">
                         <input id="SecondLastName" type="text" class="form-control" placeholder="Apellido Materno" ng-model="currentDriver.SecondLastName.Value" ng-change="currentDriver.SecondLastName.IsValid = true" error-tooltip model-property="currentDriver.SecondLastName" />
-                        <span class="glyphicon glyphicon-warning-sign form-control-feedback" aria-hidden="true" ng-show="currentDriver.SecondLastName.IsValid == false"></span>
+                        <span class="glyphicon glyphicon-warning-sign form-control-feedback" aria-hidden="true" ng-show="currentDriver.SecondLastName.IsValid === false"></span>
                     </div>
                 </div>
 
