@@ -10,7 +10,7 @@ namespace SchoolBus.DataAccess.Entities.Relationships
     {
         #region IEntity Properties
 
-        [Key]
+        [Key, DatabaseGenerated(DatabaseGeneratedOption.Identity)]
         public int Id { get; set; }
 
         public DateTime CreatedAt { get; set; }

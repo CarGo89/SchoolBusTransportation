@@ -59,7 +59,7 @@ namespace SchoolBusWeb.Controllers
         }
 
         protected ModelControllerBase()
-            : this(SettingsManager.Instance, new UserInfo(), new EntityRepository<TEntity>(), new Logger(Path.Combine(AppDomain.CurrentDomain.BaseDirectory, @"ShoolBusTransportation.log")))
+            : this(SettingsManager.Instance, new UserInfo { Id = 1 }, new EntityRepository<TEntity>(), new Logger(Path.Combine(AppDomain.CurrentDomain.BaseDirectory, @"ShoolBusTransportation.log")))
         {
         }
 
@@ -68,8 +68,6 @@ namespace SchoolBusWeb.Controllers
             Settings = settings;
 
             UserInfo = userInfo;
-
-            //UserInfo.Id = 1;
 
             EntityRepository = entityRepository;
 

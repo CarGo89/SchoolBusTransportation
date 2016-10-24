@@ -42,6 +42,9 @@ namespace SchoolBusWeb.Models.Mappings
 
             CreateMap<SchoolBus.DataAccess.Entities.Tutor, Tutor>();
             CreateMap<Tutor, SchoolBus.DataAccess.Entities.Tutor>();
+
+            CreateMap<SchoolBus.DataAccess.Entities.Student, Student>();
+            CreateMap<Student, SchoolBus.DataAccess.Entities.Student>();
         }
 
         #endregion Constructors

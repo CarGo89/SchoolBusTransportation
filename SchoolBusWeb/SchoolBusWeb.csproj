@@ -154,6 +154,7 @@
     <Content Include="Scripts\bootstrap-confirmation.js" />
     <Content Include="Scripts\bootstrap-datetimepicker.js" />
     <Content Include="Scripts\bootstrap-datetimepicker.min.js" />
+    <Content Include="Scripts\controllers\student-controller.js" />
     <Content Include="Scripts\controllers\tutor-controller.js" />
     <Content Include="Scripts\controllers\driver-controller.js" />
     <Content Include="Scripts\datatable\css\dataTables.bootstrap.css" />
